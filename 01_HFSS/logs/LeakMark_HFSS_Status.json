@@ -1,0 +1,132 @@
+{
+  "run_started": "2026-10-20T17:21:37",
+  "log_file": "C:\\xylem\\01_HFSS\\logs\\run_20261020_172137.log",
+  "stage": "write_results",
+  "ok": true,
+  "preflight": {
+    "python": "3.14.5",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "MSI-Crosshair-A17-HX",
+    "script_dir": "C:\\xylem\\01_HFSS",
+    "pyaedt": "1.8.0",
+    "free_disk_GB": 574.3,
+    "old_lock_files": [
+      "LeakMark_HFSS_IDC_20261020_164419.aedt.lock"
+    ],
+    "aedt": {
+      "status": "found",
+      "path": "C:\\Program Files\\ANSYS Inc\\v252\\AnsysEM"
+    },
+    "license": {
+      "status": "reachable",
+      "entry": "1055@lisanslar.cc.itu.edu.tr",
+      "source": "C:\\Program Files\\ANSYS Inc\\Shared Files\\Licensing\\ansyslmd.ini",
+      "resolved_ip": "160.75.151.115",
+      "connect_ms": 24
+    }
+  },
+  "scenarios": {
+    "Dry": {
+      "ok": true,
+      "C_pF": 6.8787927735319165,
+      "G_uS": 55.27596486488026,
+      "solve_seconds": 144.7,
+      "convergence": {
+        "passes": "19",
+        "delta_S": "0.0035494",
+        "converged": true,
+        "elements": 93474
+      }
+    },
+    "Moist": {
+      "ok": true,
+      "C_pF": 10.205299375245872,
+      "G_uS": 91.0999317301056,
+      "solve_seconds": 203.4,
+      "convergence": {
+        "passes": "21",
+        "delta_S": "0.0030658",
+        "converged": true,
+        "elements": 152175
+      }
+    },
+    "Wet": {
+      "ok": true,
+      "C_pF": 13.155499853112945,
+      "G_uS": 248.23331560276608,
+      "solve_seconds": 195.4,
+      "convergence": {
+        "passes": "21",
+        "delta_S": "0.0040364",
+        "converged": true,
+        "elements": 145907
+      }
+    },
+    "Wet_sigma_0.03": {
+      "ok": true,
+      "C_pF": 13.222931770727756,
+      "G_uS": 611.1031845993919,
+      "solve_seconds": 203.2,
+      "convergence": {
+        "passes": "21",
+        "delta_S": "0.0035023",
+        "converged": true,
+        "elements": 153537
+      }
+    },
+    "Wet_sigma_0.05": {
+      "ok": true,
+      "C_pF": 13.381082193418255,
+      "G_uS": 955.8381091822199,
+      "solve_seconds": 201.1,
+      "convergence": {
+        "passes": "21",
+        "delta_S": "0.0034474",
+        "converged": true,
+        "elements": 153717
+      }
+    },
+    "Wet_sigma_0.10": {
+      "ok": true,
+      "C_pF": 14.04896772164037,
+      "G_uS": 1687.177620847944,
+      "solve_seconds": 193.1,
+      "convergence": {
+        "passes": "21",
+        "delta_S": "0.0037947",
+        "converged": true,
+        "elements": 146496
+      }
+    }
+  },
+  "error": null,
+  "hint": null,
+  "args": {
+    "no_sigma_sweep": false,
+    "version": "2025.2",
+    "non_graphical": false
+  },
+  "script_version": "2026-10-20 r4 (fresh mesh per scenario, convergence recorded)",
+  "updated": "2026-10-20T17:41:24",
+  "geometry": {
+    "finger_pairs": 5,
+    "finger_width_mm": 1.0,
+    "finger_gap_mm": 1.0,
+    "finger_length_mm": 15.0,
+    "end_gap_mm": 1.0,
+    "bus_width_mm": 2.0,
+    "copper_thickness_mm": 0.035,
+    "FR4_thickness_mm": 1.6,
+    "polyethylene_cover_mm": 0.1,
+    "soil_margin_mm": 30.0,
+    "air_margin_mm": 20.0,
+    "sensor_footprint_mm": [
+      31.0,
+      26.0
+    ]
+  },
+  "failed_scenarios": [],
+  "not_converged_scenarios": [],
+  "run_finished": "2026-10-20T17:41:24",
+  "exit_code": 0
+}

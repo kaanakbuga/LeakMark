@@ -1,0 +1,15 @@
+{
+  "name": "leakmark-slides",
+  "private": true,
+  "description": "Builds the LeakMark slides (PPTX)",
+  "scripts": {
+    "build": "node build.js raw.pptx && python3 animate.py raw.pptx LeakMark.pptx"
+  },
+  "dependencies": {
+    "pptxgenjs": "4.0.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-icons": "5.7.0",
+    "sharp": "0.35.4"
+  }
+}

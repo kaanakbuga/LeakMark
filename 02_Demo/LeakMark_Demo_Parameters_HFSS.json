@@ -1,0 +1,131 @@
+{
+  "stage": "Lumped-circuit reader model with HFSS-extracted sensor C and G",
+  "hfss_source": "/mnt/user-data/uploads/xylem/01_HFSS/LeakMark_HFSS_IDC_Results.json",
+  "hfss_geometry": {
+    "finger_pairs": 5,
+    "finger_width_mm": 1.0,
+    "finger_gap_mm": 1.0,
+    "finger_length_mm": 15.0,
+    "end_gap_mm": 1.0,
+    "bus_width_mm": 2.0,
+    "copper_thickness_mm": 0.035,
+    "FR4_thickness_mm": 1.6,
+    "polyethylene_cover_mm": 0.1,
+    "soil_margin_mm": 30.0,
+    "air_margin_mm": 20.0,
+    "sensor_footprint_mm": [
+      31.0,
+      26.0
+    ]
+  },
+  "assumptions": {
+    "L_sensor_H": 2e-07,
+    "L_reader_H": 5e-07,
+    "R_sensor_ohm": 1.0,
+    "R_reader_ohm": 1.0,
+    "C_geometry_F": 5e-13,
+    "C_fixed_F": 5.786355181760309e-12,
+    "f_dry_nominal_Hz": 100000000.0,
+    "k_values": [
+      0.005,
+      0.01,
+      0.02
+    ],
+    "k_main": 0.02,
+    "material_parameters_constant_within_sweep": true,
+    "capacitor_protection_and_coil_self_capacitance_modelled": false
+  },
+  "scenario_results": [
+    {
+      "name": "Dry",
+      "epsilon_r_assumed": 4.0,
+      "sigma_S_m_assumed": 0.0001,
+      "C_soil_pF": 6.8787927735319165,
+      "G_soil_uS": 55.27596486488026,
+      "reader_peak_MHz": 100.005,
+      "reader_peak_added_resistance_ohm": 8.43217350404376,
+      "loaded_Q_half_max": 67.23025210084033
+    },
+    {
+      "name": "Moist",
+      "epsilon_r_assumed": 12.0,
+      "sigma_S_m_assumed": 0.001,
+      "C_soil_pF": 10.205299375245872,
+      "G_soil_uS": 91.0999317301056,
+      "reader_peak_MHz": 89.0025,
+      "reader_peak_added_resistance_ohm": 5.846602867654118,
+      "loaded_Q_half_max": 52.35441176470588
+    },
+    {
+      "name": "Wet",
+      "epsilon_r_assumed": 25.0,
+      "sigma_S_m_assumed": 0.01,
+      "C_soil_pF": 13.155499853112945,
+      "G_soil_uS": 248.23331560276608,
+      "reader_peak_MHz": 81.7875,
+      "reader_peak_added_resistance_ohm": 2.916732647473068,
+      "loaded_Q_half_max": 28.3984375
+    }
+  ],
+  "wet_conductivity_sensitivity_k_main": [
+    {
+      "sigma_S_m_assumed": 0.01,
+      "reader_peak_MHz": 81.787,
+      "reader_peak_added_resistance_ohm": 2.916732805918972,
+      "loaded_Q_half_max": 28.37855655794587,
+      "C_pF": 13.155499853112945,
+      "G_uS": 248.23331560276608,
+      "hfss_convergence": {
+        "passes": "21",
+        "delta_S": "0.0040364",
+        "converged": true,
+        "elements": 145907
+      }
+    },
+    {
+      "sigma_S_m_assumed": 0.03,
+      "reader_peak_MHz": 81.664,
+      "reader_peak_added_resistance_ohm": 1.4170295388641119,
+      "loaded_Q_half_max": 13.803921568627452,
+      "C_pF": 13.222931770727756,
+      "G_uS": 611.1031845993919,
+      "hfss_convergence": {
+        "passes": "21",
+        "delta_S": "0.0035023",
+        "converged": true,
+        "elements": 153537
+      }
+    },
+    {
+      "sigma_S_m_assumed": 0.05,
+      "reader_peak_MHz": 81.348,
+      "reader_peak_added_resistance_ohm": 0.9517954870850303,
+      "loaded_Q_half_max": 9.30648667200549,
+      "C_pF": 13.381082193418255,
+      "G_uS": 955.8381091822199,
+      "hfss_convergence": {
+        "passes": "21",
+        "delta_S": "0.0034474",
+        "converged": true,
+        "elements": 153717
+      }
+    },
+    {
+      "sigma_S_m_assumed": 0.1,
+      "reader_peak_MHz": 80.01,
+      "reader_peak_added_resistance_ohm": 0.5607577560466752,
+      "loaded_Q_half_max": 5.572503134141245,
+      "C_pF": 14.04896772164037,
+      "G_uS": 1687.177620847944,
+      "hfss_convergence": {
+        "passes": "21",
+        "delta_S": "0.0037947",
+        "converged": true,
+        "elements": 146496
+      }
+    }
+  ],
+  "csv_frequency_step_Hz": 50000.0,
+  "interpretation": "Scenario-specific response shifts and loss broadening in this assumed circuit. CST extraction, calibrated soil data and depth mapping are future steps.",
+  "validation": "Closed-form result checked against independent 2-loop circuit solves; passivity, zero coupling, and frequency-grid convergence checked."
+}

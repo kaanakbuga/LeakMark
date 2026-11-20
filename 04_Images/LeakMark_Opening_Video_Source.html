@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;background:#061A2B}canvas{display:block}
+</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d'),W=1920,H=1080;
+const RATE=3995434; // litres per second: 126 billion m3 per year / seconds per year
+const T0=1.2,T1=7.0,END=10;
+let s=11;const rnd=()=>{s=(s*16807)%2147483647;return(s-1)/2147483646;};
+const drops=Array.from({length:70},()=>({x:rnd()*W,y:rnd()*H,v:250+rnd()*500,l:10+rnd()*22,a:.08+rnd()*.18}));
+const ease=t=>t<0?0:t>1?1:1-Math.pow(1-t,3);
+const fmt=n=>Math.floor(n).toLocaleString('en-US');
+function text(str,px,y,color,weight=700,alpha=1,spacing=0){x.save();x.globalAlpha=alpha;x.fillStyle=color;x.font=`${weight} ${px}px Inter, Arial, sans-serif`;x.textAlign='center';x.textBaseline='middle';
+  if(spacing){x.letterSpacing=spacing+'px';}x.fillText(str,W/2,y);x.restore();}
+window.render=function(t){
+  x.fillStyle='#061A2B';x.fillRect(0,0,W,H);
+  const g=x.createRadialGradient(W/2,H*0.45,50,W/2,H*0.45,W*0.7);g.addColorStop(0,'rgba(14,154,167,0.18)');g.addColorStop(1,'rgba(6,26,43,0)');x.fillStyle=g;x.fillRect(0,0,W,H);
+  // rain of faint drops once the counter starts
+  const rainA=ease((t-T0)/1.0);
+  if(rainA>0){x.save();x.strokeStyle='#7FD3DA';x.lineCap='round';x.lineWidth=2.5;
+    for(const d of drops){const yy=(d.y+d.v*t)%(H+60)-30;x.globalAlpha=d.a*rainA;x.beginPath();x.moveTo(d.x,yy);x.lineTo(d.x,yy+d.l);x.stroke();}x.restore();}
+  // rising water at the bottom
+  const lvl=H-30-ease((t-T0)/(END-T0))*170;
+  x.save();x.fillStyle='rgba(14,154,167,0.22)';x.beginPath();x.moveTo(0,H);
+  for(let i=0;i<=W;i+=20)x.lineTo(i,lvl+Math.sin(i/90+t*2.2)*7);x.lineTo(W,H);x.closePath();x.fill();x.restore();
+  // opening drop
+  if(t<1.6){const fy=Math.min(1,t/0.75);const y=120+fy*(H*0.40-120);
+    if(t<0.75){x.save();x.fillStyle='#7FD3DA';x.beginPath();x.moveTo(W/2,y-34);x.bezierCurveTo(W/2+20,y-6,W/2+22,y+16,W/2,y+18);x.bezierCurveTo(W/2-22,y+16,W/2-20,y-6,W/2,y-34);x.fill();x.restore();}
+    else{const k=(t-0.75)/0.85;x.save();x.strokeStyle='#7FD3DA';for(let r=0;r<3;r++){const rr=(k*260)-r*55;if(rr<=0)continue;x.globalAlpha=Math.max(0,0.8-k)*(1-r*0.25);x.lineWidth=3;x.beginPath();x.ellipse(W/2,H*0.40,rr,rr*0.22,0,0,Math.PI*2);x.stroke();}x.restore();}}
+  // counter
+  const ca=ease((t-T0)/0.6), fade=t>T1?1-0.35*ease((t-T1)/0.8):1;
+  if(ca>0){const val=RATE*Math.max(0,Math.min(t,T1)-T0);
+    text('TREATED WATER LOST WORLDWIDE SINCE THIS VIDEO STARTED',30,H*0.20,'#9DCFD6',600,ca*fade,4);
+    text(fmt(val),190,H*0.355,'#FFFFFF',800,ca*fade);
+    text('litres',44,H*0.47,'#7FD3DA',600,ca*fade);}
+  // closing line
+  const la=ease((t-T1-0.5)/0.8);
+  if(la>0){text('Much of it leaks from pipes we cannot see.',64,H*0.60,'#FFFFFF',700,la);
+    text('126 billion m³ per year, about 4 million litres per second (Liemberger & Wyatt, IWA)',22,H*0.665,'#7FD3DA',500,la*0.9);}
+};
+render(0);
+</script></body></html>

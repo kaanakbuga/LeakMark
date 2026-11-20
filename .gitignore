@@ -1,0 +1,15 @@
+node_modules/
+__pycache__/
+*.pyc
+# test and render outputs
+src/live_demo/s*_*.png
+src/slides/raw.pptx
+src/slides/LeakMark.pptx
+src/opening_video/frames/
+# HFSS temporary files
+*.aedtresults/
+*.pyaedt/
+*.aedt.lock
+.~lock*
+~$*
+CLAUDE.md

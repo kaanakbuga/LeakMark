@@ -1,0 +1,147 @@
+1
+00:00:09,550 --> 00:00:12,900
+Every second, 4 million litres of treated
+
+2
+00:00:12,950 --> 00:00:15,870
+water vanish before reaching a tap.
+
+3
+00:00:18,780 --> 00:00:21,800
+I'm Kaan Akbuğa and this is LeakMark.
+
+4
+00:00:25,000 --> 00:00:29,840
+That's 126 billion cubic metres a year.
+
+5
+00:00:30,140 --> 00:00:33,050
+In Istanbul, leaks waste
+
+6
+00:00:33,100 --> 00:00:35,260
+two months of the city's water.
+
+7
+00:00:37,960 --> 00:00:39,640
+Surveys are periodic.
+
+8
+00:00:40,280 --> 00:00:43,280
+Meters show a loss, not a location.
+
+9
+00:00:43,720 --> 00:00:45,260
+Leaks hide for weeks.
+
+10
+00:00:48,000 --> 00:00:51,980
+LeakMark is a battery-free tag above the pipe,
+
+11
+00:00:52,500 --> 00:00:55,980
+a coil and a soil-facing capacitor.
+
+12
+00:00:56,840 --> 00:00:59,000
+Wet soil shifts its resonance.
+
+13
+00:01:02,510 --> 00:01:05,470
+A vehicle reader maps every tag.
+
+14
+00:01:06,090 --> 00:01:09,050
+Rain wets them all, a leak wets one.
+
+15
+00:01:09,870 --> 00:01:12,670
+And that triggers the alert.
+
+16
+00:01:14,880 --> 00:01:19,150
+In Ansys HFSS, wet soil moves the tag
+
+17
+00:01:19,200 --> 00:01:24,680
+from 100 to 82 MHz, an 18 MHz shift.
+
+18
+00:01:28,700 --> 00:01:30,460
+Utilities are the customer:
+
+19
+00:01:30,520 --> 00:01:34,840
+web panel for leak teams, mobile app for crews.
+
+20
+00:01:38,310 --> 00:01:39,610
+Here is the demo.
+
+21
+00:01:40,990 --> 00:01:43,800
+The crew scans the route and every
+
+22
+00:01:43,850 --> 00:01:46,030
+scan reaches the control room.
+
+23
+00:01:51,690 --> 00:01:57,770
+Day 18, tag T-27 drops below its neighbours.
+
+24
+00:01:58,850 --> 00:02:01,170
+One click sends a crew.
+
+25
+00:02:01,850 --> 00:02:04,070
+They confirm and repair the leak.
+
+26
+00:02:05,350 --> 00:02:08,150
+Hidden leak to repair: two days.
+
+27
+00:02:15,290 --> 00:02:17,190
+Every part already exists.
+
+28
+00:02:17,810 --> 00:02:21,700
+Fixing a 10-litre-per-minute leak
+
+29
+00:02:21,750 --> 00:02:26,770
+15 days earlier saves 216 cubic metres.
+
+30
+00:02:29,320 --> 00:02:33,070
+Istanbul and 47 countries face
+
+31
+00:02:33,120 --> 00:02:36,240
+high or extreme water stress.
+
+32
+00:02:38,810 --> 00:02:43,990
+Next, a soil box prototype, then an Istanbul pilot.
+
+33
+00:02:48,000 --> 00:02:51,490
+Xylem has helped cut over 4.3 billion
+
+34
+00:02:51,540 --> 00:02:54,240
+cubic metres of non-revenue water.
+
+35
+00:02:54,600 --> 00:02:55,850
+LeakMark takes that mission
+
+36
+00:02:55,900 --> 00:02:58,300
+to the pipes nobody sees.
+
+37
+00:02:58,680 --> 00:02:59,680
+Thank you.

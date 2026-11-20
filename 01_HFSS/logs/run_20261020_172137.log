@@ -1,0 +1,65 @@
+2026-10-20 17:21:37 | INFO    | LeakMark HFSS run started. Script version: 2026-10-20 r4 (fresh mesh per scenario, convergence recorded). Args: {'no_sigma_sweep': False, 'version': '2025.2', 'non_graphical': False}
+2026-10-20 17:21:37 | INFO    | === STAGE: preflight ===
+2026-10-20 17:21:38 | INFO    | Python 3.14.5 on Windows-11-10.0.26300-SP0
+2026-10-20 17:21:38 | INFO    | PyAEDT 1.8.0
+2026-10-20 17:21:38 | INFO    | Free disk space: 574.3 GB
+2026-10-20 17:21:38 | INFO    | Write access to C:\xylem\01_HFSS: ok
+2026-10-20 17:21:38 | WARNING | Lock files from earlier runs: LeakMark_HFSS_IDC_20261020_164419.aedt.lock. Their AEDT windows may still be open; this run uses a new project, so it is not affected.
+2026-10-20 17:21:38 | INFO    | AEDT 2025.2 found: C:\Program Files\ANSYS Inc\v252\AnsysEM
+2026-10-20 17:21:38 | DEBUG   | License file found: C:\Program Files\ANSYS Inc\Shared Files\Licensing\ansyslmd.ini
+2026-10-20 17:21:38 | INFO    | License server reachable: 1055@lisanslar.cc.itu.edu.tr (160.75.151.115) in 24 ms
+2026-10-20 17:21:38 | INFO    | Preflight passed.
+2026-10-20 17:21:38 | INFO    | Scenarios: Dry, Moist, Wet, Wet_sigma_0.03, Wet_sigma_0.05, Wet_sigma_0.10
+2026-10-20 17:21:38 | INFO    | === STAGE: open_aedt ===
+2026-10-20 17:22:19 | INFO    | AEDT opened. Project: C:\xylem\01_HFSS\LeakMark_HFSS_IDC_20261020_172137.aedt
+2026-10-20 17:22:19 | INFO    | === STAGE: build_model ===
+2026-10-20 17:22:20 | INFO    | Electrodes created: BusA, BusB
+2026-10-20 17:22:21 | INFO    | Air box: 12 faces, 6 outer faces selected for radiation
+2026-10-20 17:22:21 | INFO    | Lumped port P1 created on PortSheet
+2026-10-20 17:22:21 | INFO    | Setup1: 100 MHz, max 25 passes, delta S 0.005
+2026-10-20 17:22:22 | INFO    | === STAGE: solve_Dry ===
+2026-10-20 17:22:22 | INFO    | Solving Dry: epsilon_r=4.0, sigma=0.0001 S/m
+2026-10-20 17:22:22 | DEBUG   | Setup.revert_to_initial_mesh not available: 'SetupHFSS' object has no attribute 'revert_to_initial_mesh'
+2026-10-20 17:22:22 | INFO    | Mesh reset to initial (oAnalysis.RevertSetupToInitial)
+2026-10-20 17:24:46 | DEBUG   | Y11 read with expressions ['re(Y(P1,P1))', 'im(Y(P1,P1))']
+2026-10-20 17:24:46 | INFO    |   Dry: C = 6.8788 pF, G = 55.276 uS (145 s)
+2026-10-20 17:24:46 | INFO    | Convergence Dry: {'passes': '19', 'delta_S': '0.0035494', 'converged': True, 'elements': 93474}
+2026-10-20 17:24:46 | INFO    | === STAGE: solve_Moist ===
+2026-10-20 17:24:46 | INFO    | Solving Moist: epsilon_r=12.0, sigma=0.001 S/m
+2026-10-20 17:24:46 | DEBUG   | Setup.revert_to_initial_mesh not available: 'SetupHFSS' object has no attribute 'revert_to_initial_mesh'
+2026-10-20 17:24:46 | INFO    | Mesh reset to initial (oAnalysis.RevertSetupToInitial)
+2026-10-20 17:28:10 | DEBUG   | Y11 read with expressions ['re(Y(P1,P1))', 'im(Y(P1,P1))']
+2026-10-20 17:28:10 | INFO    |   Moist: C = 10.2053 pF, G = 91.100 uS (203 s)
+2026-10-20 17:28:10 | INFO    | Convergence Moist: {'passes': '21', 'delta_S': '0.0030658', 'converged': True, 'elements': 152175}
+2026-10-20 17:28:10 | INFO    | === STAGE: solve_Wet ===
+2026-10-20 17:28:10 | INFO    | Solving Wet: epsilon_r=25.0, sigma=0.01 S/m
+2026-10-20 17:28:10 | DEBUG   | Setup.revert_to_initial_mesh not available: 'SetupHFSS' object has no attribute 'revert_to_initial_mesh'
+2026-10-20 17:28:10 | INFO    | Mesh reset to initial (oAnalysis.RevertSetupToInitial)
+2026-10-20 17:31:25 | DEBUG   | Y11 read with expressions ['re(Y(P1,P1))', 'im(Y(P1,P1))']
+2026-10-20 17:31:25 | INFO    |   Wet: C = 13.1555 pF, G = 248.233 uS (195 s)
+2026-10-20 17:31:25 | INFO    | Convergence Wet: {'passes': '21', 'delta_S': '0.0040364', 'converged': True, 'elements': 145907}
+2026-10-20 17:31:25 | INFO    | === STAGE: solve_Wet_sigma_0.03 ===
+2026-10-20 17:31:26 | INFO    | Solving Wet_sigma_0.03: epsilon_r=25.0, sigma=0.03 S/m
+2026-10-20 17:31:26 | DEBUG   | Setup.revert_to_initial_mesh not available: 'SetupHFSS' object has no attribute 'revert_to_initial_mesh'
+2026-10-20 17:31:26 | INFO    | Mesh reset to initial (oAnalysis.RevertSetupToInitial)
+2026-10-20 17:34:49 | DEBUG   | Y11 read with expressions ['re(Y(P1,P1))', 'im(Y(P1,P1))']
+2026-10-20 17:34:49 | INFO    |   Wet_sigma_0.03: C = 13.2229 pF, G = 611.103 uS (203 s)
+2026-10-20 17:34:49 | INFO    | Convergence Wet_sigma_0.03: {'passes': '21', 'delta_S': '0.0035023', 'converged': True, 'elements': 153537}
+2026-10-20 17:34:49 | INFO    | === STAGE: solve_Wet_sigma_0.05 ===
+2026-10-20 17:34:49 | INFO    | Solving Wet_sigma_0.05: epsilon_r=25.0, sigma=0.05 S/m
+2026-10-20 17:34:49 | DEBUG   | Setup.revert_to_initial_mesh not available: 'SetupHFSS' object has no attribute 'revert_to_initial_mesh'
+2026-10-20 17:34:49 | INFO    | Mesh reset to initial (oAnalysis.RevertSetupToInitial)
+2026-10-20 17:38:10 | DEBUG   | Y11 read with expressions ['re(Y(P1,P1))', 'im(Y(P1,P1))']
+2026-10-20 17:38:10 | INFO    |   Wet_sigma_0.05: C = 13.3811 pF, G = 955.838 uS (201 s)
+2026-10-20 17:38:10 | INFO    | Convergence Wet_sigma_0.05: {'passes': '21', 'delta_S': '0.0034474', 'converged': True, 'elements': 153717}
+2026-10-20 17:38:10 | INFO    | === STAGE: solve_Wet_sigma_0.10 ===
+2026-10-20 17:38:10 | INFO    | Solving Wet_sigma_0.10: epsilon_r=25.0, sigma=0.1 S/m
+2026-10-20 17:38:10 | DEBUG   | Setup.revert_to_initial_mesh not available: 'SetupHFSS' object has no attribute 'revert_to_initial_mesh'
+2026-10-20 17:38:10 | INFO    | Mesh reset to initial (oAnalysis.RevertSetupToInitial)
+2026-10-20 17:41:23 | DEBUG   | Y11 read with expressions ['re(Y(P1,P1))', 'im(Y(P1,P1))']
+2026-10-20 17:41:23 | INFO    |   Wet_sigma_0.10: C = 14.0490 pF, G = 1687.178 uS (193 s)
+2026-10-20 17:41:23 | INFO    | Convergence Wet_sigma_0.10: {'passes': '21', 'delta_S': '0.0037947', 'converged': True, 'elements': 146496}
+2026-10-20 17:41:23 | INFO    | === STAGE: write_results ===
+2026-10-20 17:41:23 | INFO    | Results written: C:\xylem\01_HFSS\LeakMark_HFSS_IDC_Results.json
+2026-10-20 17:41:24 | INFO    | AEDT messages saved: C:\xylem\01_HFSS\logs\aedt_messages_20261020_172137.txt (19 lines)
+2026-10-20 17:41:24 | INFO    | Finished with exit code 0. Log: C:\xylem\01_HFSS\logs\run_20261020_172137.log

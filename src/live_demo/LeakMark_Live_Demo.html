@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LeakMark Live Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
+<style>
+/* Layout: control-room web panel on the left, the crew's field app in a phone frame on the right. One shared state drives both. */
+:root{
+  --ground:#071C2E; --panel:#0C2840; --panel-2:#11324F; --line:#1E4664;
+  --ink:#E7F1F5; --ink-2:#9DB6C6; --ink-3:#6C8BA0;
+  --water:#7FD3DA; --brand:#0E9AA7; --ok:#35C47D; --rain:#F2B544; --leak:#FF5A3C; --work:#8FA8FF;
+  --street:#15354F; --block:#0A2236; --pipe:#5C7F98;
+  --app-bg:#F2F6F8; --app-card:#FFFFFF; --app-ink:#0B2E4A; --app-ink-2:#4A6478; --app-line:#DCE6EC;
+  --f-display:'Sora','IBM Plex Sans',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-data:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ground);color:var(--ink);font-family:var(--f-body);font-size:14.5px;line-height:1.45}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);padding:8px 12px;font-weight:600;font-size:13px}
+button:hover{border-color:var(--water)}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+button.primary{background:var(--brand);border-color:var(--brand);color:#04131F}
+.page{max-width:1880px;margin:0 auto;padding-block:16px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start}
+.web{display:grid;gap:14px;min-width:0}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:38px;height:38px;flex:none}
+.brand h1{font-family:var(--f-display);font-weight:800;font-size:24px;letter-spacing:-.02em;margin:0;line-height:1}
+.brand h1 span{color:var(--water)}
+.brand p{margin:2px 0 0;color:var(--ink-2);font-size:12.5px}
+.hdr-r{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.flag{font-family:var(--f-data);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--rain);border:1px solid color-mix(in srgb,var(--rain) 55%,transparent);padding:6px 10px;border-radius:6px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:3px;min-width:0}
+.kpi .lab{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.kpi .val{font-family:var(--f-data);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .sub{font-size:12px;color:var(--ink-2)}
+.k-ok .val{color:var(--ok)} .k-rain .val{color:var(--rain)} .k-leak .val{color:var(--leak)} .k-work .val{color:var(--work)}
+.main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;min-width:0}
+.card-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 14px;padding:12px 14px 0}
+.card-h h2{margin:0;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--ink-2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#map{width:100%;height:auto;display:block;border-radius:8px;background:var(--block)}
+.map-box{padding:8px 10px 10px}
+#map .tag{cursor:pointer}
+.side{display:grid;gap:14px;min-width:0}
+.insp{padding:12px 14px 14px;display:grid;gap:10px}
+.insp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.insp-top h3{margin:0;font-family:var(--f-data);font-size:19px;font-weight:600}
+.insp-top p{margin:1px 0 0;color:var(--ink-2);font-size:12.5px}
+.pill{font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.pill.rain{background:color-mix(in srgb,var(--rain) 18%,transparent);color:var(--rain)}
+.pill.leak{background:color-mix(in srgb,var(--leak) 20%,transparent);color:var(--leak)}
+.pill.work{background:color-mix(in srgb,var(--work) 20%,transparent);color:var(--work)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stat{background:var(--panel-2);border-radius:8px;padding:8px 10px;min-width:0}
+.stat .lab{font-size:11px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase}
+.stat .val{font-family:var(--f-data);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+#chart{width:100%;height:auto;display:block}
+.why{font-size:13px;color:var(--ink-2);margin:0}
+.why b{color:var(--ink)}
+.alerts{padding:4px 14px 14px;display:grid;gap:8px}
+.alert{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--panel-2);border-radius:10px;padding:10px 12px}
+.alert .ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-family:var(--f-data);font-size:13px}
+.alert h4{margin:0;font-size:14px}
+.alert p{margin:1px 0 0;font-size:12px;color:var(--ink-2)}
+.empty{color:var(--ink-3);font-size:13px;padding:6px 0 2px;margin:0}
+.log{padding:4px 14px 14px;display:grid;gap:6px;max-height:190px;overflow:auto}
+.log div{font-size:12.5px;color:var(--ink-2);display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px}
+.log span{font-family:var(--f-data);color:var(--ink-3);font-size:11.5px;white-space:nowrap}
+.timeline{padding:12px 14px;display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:12px;align-items:center}
+.day{font-family:var(--f-data);font-size:18px;font-weight:600;min-width:7ch;font-variant-numeric:tabular-nums}
+#day{width:100%;accent-color:var(--water)}
+#events{position:relative;height:16px;font-size:11px;color:var(--ink-2)}
+#events span{position:absolute;transform:translateX(-50%);white-space:nowrap;font-family:var(--f-data)}
+.wl{padding:6px 14px 14px;display:grid;gap:8px}.wl .row{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink-2)}.wl .row b{font-family:var(--f-data);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}.wl .big b{font-size:22px;color:var(--water)}.wl small{font-size:11.5px;color:var(--ink-3)}
+.score{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}.score span{font-size:11px;font-family:var(--f-data);padding:2px 7px;border-radius:5px;background:var(--panel);color:var(--ink-2)}.score .hi{color:var(--leak);background:color-mix(in srgb,var(--leak) 16%,transparent)}
+.report{grid-column:1/-1;margin:4px 0 0;padding:10px;border-radius:8px;background:var(--ground);font-family:var(--f-data);font-size:11.5px;color:var(--ink-2);white-space:pre-wrap}
+.foot{font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 16px}
+
+/* ---------- phone ---------- */
+.phone-col{position:sticky;top:16px;display:grid;gap:10px;justify-items:center}
+.phone-cap{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.phone{width:390px;height:800px;max-width:100%;border-radius:46px;background:#020B13;padding:12px;box-shadow:0 0 0 2px #1E4664,0 30px 60px rgba(0,0,0,.45)}
+.screen{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:var(--app-bg);color:var(--app-ink);display:flex;flex-direction:column}
+.status{height:34px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:12.5px;font-weight:600;color:var(--app-ink)}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:110px;height:26px;background:#020B13;border-radius:16px}
+.app-h{flex:none;padding:6px 18px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.app-h h2{margin:0;font-family:var(--f-display);font-size:20px;letter-spacing:-.01em}
+.app-h p{margin:0;font-size:12px;color:var(--app-ink-2)}
+.app-h .back{background:transparent;border:0;color:var(--brand);padding:4px 0;font-size:14px}
+.app-body{flex:1;overflow:auto;padding:4px 16px 16px;display:grid;gap:12px;align-content:start}
+.a-card{background:var(--app-card);border-radius:16px;padding:14px;display:grid;gap:8px;border:1px solid var(--app-line)}
+.a-card h3{margin:0;font-size:15px}
+.a-card p{margin:0;font-size:13px;color:var(--app-ink-2)}
+.a-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px}
+.a-row b{font-family:var(--f-data);font-weight:600}
+.a-btn{width:100%;border:0;border-radius:14px;padding:14px;font-size:15px;font-weight:700;background:var(--brand);color:#fff}
+.a-btn.sec{background:#E3EEF2;color:var(--app-ink)}
+.a-btn.red{background:var(--leak);color:#fff}
+.a-btn:hover{filter:brightness(1.05);border:0}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:#E3EEF2;color:var(--app-ink)}
+.chip.ok{background:#DDF4E8;color:#1D7A4C}.chip.leak{background:#FFE3DD;color:#B4321A}.chip.work{background:#E5EAFF;color:#3949A8}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.prog{height:8px;border-radius:99px;background:#E3EEF2;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--brand);width:0}
+.readings{display:grid;gap:4px;font-family:var(--f-data);font-size:12.5px;max-height:220px;overflow:hidden}
+.readings div{display:flex;justify-content:space-between;color:var(--app-ink-2)}
+.tabs{flex:none;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--app-line);background:var(--app-card);padding:6px 6px 14px}
+.tabs button{background:transparent;border:0;color:var(--app-ink-2);display:grid;justify-items:center;gap:2px;font-size:11.5px;font-weight:600;padding:6px;position:relative}
+.tabs button[aria-current="page"]{color:var(--brand)}
+.tabs svg{width:22px;height:22px}
+[hidden]{display:none!important}
+.badge{position:absolute;top:2px;right:26%;min-width:18px;height:18px;border-radius:9px;background:var(--leak);color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px}
+.banner{position:absolute;left:10px;right:10px;top:40px;background:#0B2E4A;color:#fff;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;box-shadow:0 12px 30px rgba(0,0,0,.35);cursor:pointer;transform:translateY(calc(-100% - 60px));visibility:hidden;transition:transform .35s ease,visibility 0s linear .35s;z-index:5;border:0;text-align:left}
+.banner.show{transform:none;visibility:visible;transition:transform .35s ease,visibility 0s}
+.banner b{display:block;font-size:13.5px}.banner span{font-size:12px;color:#BFE6EA}
+.mini{width:100%;height:auto;border-radius:12px;background:#E3EEF2;display:block}
+.field{display:grid;gap:4px;font-size:12.5px;color:var(--app-ink-2)}
+.field select,.field input{font:inherit;font-size:14px;padding:10px 12px;border-radius:12px;border:1px solid var(--app-line);background:#fff;color:var(--app-ink)}
+.choice{display:grid;gap:8px}
+.choice button{background:#fff;border:1px solid var(--app-line);color:var(--app-ink);border-radius:12px;padding:12px;text-align:left;font-size:14px}
+.choice button[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 35%,transparent)}
+.photo{height:120px;border-radius:12px;background:repeating-linear-gradient(135deg,#D7E3E9 0 10px,#E6EEF2 10px 20px);display:grid;place-items:center;color:var(--app-ink-2);font-size:13px;font-weight:600}
+.photo.taken{background:linear-gradient(160deg,#5E4430,#8A6A4A 55%,#9FB3C2 56%,#9FB3C2 70%,#5E4430 71%);color:#fff}
+body.field-only .page{grid-template-columns:minmax(0,1fr);justify-items:center}
+body.field-only .web{display:none}
+@media (max-width:1400px){.page{grid-template-columns:minmax(0,1fr)}.phone-col{position:static}}
+@media (max-width:1050px){.main{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){#events span:last-child{transform:translateX(-100%)}.timeline{grid-template-columns:auto auto minmax(0,1fr)}.phone{width:100%;height:760px;border-radius:0;padding:0;box-shadow:none;background:transparent}.screen{border-radius:20px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="page" lang="en">
+  <div class="web">
+    <header>
+      <div class="brand">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><defs><clipPath id="dc"><path d="M256 40C256 40 112 214 112 320a144 144 0 0 0 288 0C400 214 256 40 256 40Z"/></clipPath></defs><path d="M256 40C256 40 112 214 112 320a144 144 0 0 0 288 0C400 214 256 40 256 40Z" fill="#0E9AA7"/><g clip-path="url(#dc)"><rect x="0" y="318" width="512" height="200" fill="#2F5C75"/><rect x="0" y="310" width="512" height="14" fill="#0B2E4A"/><rect x="196" y="378" width="120" height="58" rx="10" fill="#F3EDE4"/></g><g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="22"><path d="M214 272a60 60 0 0 1 84 0"/><path d="M184 238a104 104 0 0 1 144 0" opacity=".6"/></g></svg>
+        <div><h1>Leak<span>Mark</span> Control Room</h1><p id="sub">Istanbul pilot zone · schematic network map</p></div>
+      </div>
+      <div class="hdr-r"><span class="flag">Simulated demo data</span><button id="reset">Restart demo</button></div>
+    </header>
+
+    <section class="kpis" aria-label="Network summary">
+      <div class="kpi"><span class="lab">Tags read</span><span class="val" id="k-read">–</span><span class="sub" id="k-read-sub">Last scan</span></div>
+      <div class="kpi k-rain"><span class="lab">Wet soil, no alert</span><span class="val" id="k-rain">0</span><span class="sub" id="k-rain-sub">Rain or drainage pattern</span></div>
+      <div class="kpi k-leak"><span class="lab">Open leak alerts</span><span class="val" id="k-leak">0</span><span class="sub" id="k-leak-sub">Local and persistent wetting</span></div>
+      <div class="kpi k-work"><span class="lab">Leak start to repair</span><span class="val" id="k-fix">–</span><span class="sub" id="k-fix-sub">No repair logged yet</span></div>
+    </section>
+
+    <div class="main">
+      <section class="card" aria-label="Network map">
+        <div class="card-h"><h2>Network map</h2>
+          <div class="legend"><span><i style="background:var(--ok)"></i>Dry</span><span><i style="background:var(--rain)"></i>Wet soil</span><span><i style="background:var(--leak)"></i>Leak suspected</span><span><i style="background:var(--work)"></i>Crew on it</span><span><i style="background:transparent;border:2px solid var(--pipe);border-radius:2px;transform:rotate(45deg);width:9px;height:9px"></i>Valve</span></div>
+        </div>
+        <div class="map-box"><svg id="map" viewBox="0 0 1000 620" role="img" aria-label="Schematic map of the pilot zone with tags along water mains"></svg></div>
+      </section>
+      <div class="side">
+        <section class="card insp" aria-label="Tag inspector">
+          <div class="insp-top"><div><h3 id="t-id">T-27</h3><p id="t-loc">Main C</p></div><span class="pill ok" id="t-pill">Dry</span></div>
+          <div class="stats">
+            <div class="stat"><div class="lab">Resonance</div><div class="val" id="t-f">–</div></div>
+            <div class="stat"><div class="lab">Neighbours</div><div class="val" id="t-n">–</div></div>
+            <div class="stat"><div class="lab">Local shift</div><div class="val" id="t-d">–</div></div>
+          </div>
+          <svg id="chart" viewBox="0 0 520 200" role="img" aria-label="Resonance of the selected tag over time"></svg>
+          <p class="why" id="t-why"></p>
+        </section>
+        <section class="card" aria-label="Alerts and work orders">
+          <div class="card-h"><h2>Alerts and work orders</h2></div>
+          <div class="alerts" id="alerts"></div>
+        </section>
+        <section class="card" aria-label="Water loss estimate">
+          <div class="card-h"><h2>Water loss estimate</h2></div>
+          <div class="wl" id="wl"></div>
+        </section>
+        <section class="card" aria-label="Activity log">
+          <div class="card-h"><h2>Activity</h2></div>
+          <div class="log" id="log"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="card timeline" aria-label="Timeline">
+      <button class="primary" id="play">Play</button>
+      <span class="day" id="dayLabel">Day 14</span>
+      <div><input type="range" id="day" min="1" max="30" value="14" aria-label="Scan day"><div id="events"></div></div>
+      <span class="foot">Play stops at each new alert</span>
+    </section>
+    <div class="foot">
+      <span>Sensor response: 100.0 MHz dry, 89.0 MHz moist, 81.8 MHz wet (HFSS-extracted sensor values in a reader circuit model).</span>
+      <span>Leak rule: 4 MHz or more below neighbours on 2 consecutive scans.</span>
+      <span>All data on this page is simulated.</span>
+    </div>
+  </div>
+
+  <div class="phone-col">
+    <span class="phone-cap">LeakMark Field app · crew phone</span>
+    <div class="phone"><div class="screen" id="screen">
+      <div class="notch" aria-hidden="true"></div>
+      <div class="status"><span id="clock">09:00</span><span>5G ▮▮▮</span></div>
+      <button class="banner" id="banner" type="button" aria-live="polite"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7FD3DA" stroke-width="2"><path d="M12 2l9 16H3z"/><path d="M12 9v4M12 16h.01"/></svg><div><b id="bn-t">New work order</b><span id="bn-s"></span></div></button>
+      <div class="app-h" id="apph"></div>
+      <div class="app-body" id="appb"></div>
+      <nav class="tabs" aria-label="Field app">
+        <button id="tab-scan" data-tab="scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M8 12a4 4 0 0 1 8 0"/><circle cx="12" cy="16" r="2"/></svg>Scan</button>
+        <button id="tab-orders" data-tab="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Work orders<span class="badge" id="badge" hidden>1</span></button>
+        <button id="tab-install" data-tab="install"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add tag</button>
+      </nav>
+    </div></div>
+  </div>
+</div>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const $=s=>document.querySelector(s);
+const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.documentElement.lang='en';
+const IV=new Set();const every=(fn,ms)=>{const id=setInterval(()=>fn(id),ms);IV.add(id);return id;};const halt=id=>{clearInterval(id);IV.delete(id);};
+if(location.hash==='#field')document.body.classList.add('field-only');
+
+/* ---------- sensor model (HFSS-extracted values) ---------- */
+const topp=t=>3.03+9.3*t+146*t*t-76.7*t*t*t;
+const PTS=[[4,100.0],[12,89.0],[25,81.8]];
+function freq(theta){const e=topp(theta);
+  if(e<=PTS[0][0])return PTS[0][1]+(PTS[0][0]-e)*0.4;
+  for(let i=0;i<PTS.length-1;i++){const[a,fa]=PTS[i],[b,fb]=PTS[i+1];if(e<=b)return fa+(fb-fa)*(e-a)/(b-a);}
+  const[a,fa]=PTS[1],[b,fb]=PTS[2];return fb+(fb-fa)*(e-b)/(b-a);}
+
+/* ---------- network ---------- */
+let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646;};
+const mains=[{id:'A',y:66},{id:'B',y:216},{id:'C',y:366}];
+const BASE_TAGS=[];let n=1;
+for(const m of mains)for(let i=0;i<10;i++)BASE_TAGS.push({id:'T-'+String(n++).padStart(2,'0'),main:m.id,x:40+920*(i+0.5)/10,y:m.y,depth:(0.9+rnd()*0.5).toFixed(1),base:0.05+rnd()*0.04});
+for(const t of[0.15,0.49,0.81])BASE_TAGS.push({id:'T-'+String(n++).padStart(2,'0'),main:'R',x:806,y:520+(66-520)*t,depth:(0.9+rnd()*0.5).toFixed(1),base:0.05+rnd()*0.04});
+const LEAK_ID='T-27',DAYS=30,RAIN=[8,9],LEAK_START=16,START_DAY=14;
+const FLOW=10,DAY_M3=FLOW*1440/1000,EARLY_DAYS=15;
+const VALVES=[];for(const m of mains)[224,408,592,776].forEach((x,i)=>VALVES.push({id:'V-'+m.id+(i+1),main:m.id,x,y:m.y}));
+function isoValves(t){const v=VALVES.filter(v=>v.main===t.main);const l=v.filter(v=>v.x<t.x).pop(),r=v.find(v=>v.x>t.x);return[l,r].filter(Boolean);}
+const NEW_SPOTS={A:{x:316,y:66},B:{x:316,y:216},C:{x:132,y:366}};
+
+/* ---------- state ---------- */
+let S;
+function fresh(){return{day:START_DAY,sel:LEAK_ID,tags:BASE_TAGS.map(t=>({...t})),repairDay:null,alerts:{},log:[],woSeq:417,
+  ph:{tab:'scan',screen:'home',scan:null,check:null,photo:false,form:{main:'A',depth:'1.2'},newTag:null,lastScan:null}};}
+S=fresh();
+const LEAK=()=>S.tags.find(t=>t.id===LEAK_ID);
+function rainAt(d){let w=0;for(const r of RAIN)if(d>=r)w+=0.24*Math.exp(-(d-r)/1.6);return Math.min(w,0.3);}
+function leakGrow(d){return d<LEAK_START?0:Math.min(0.33,0.055*(d-LEAK_START+1));}
+function leakAt(t,d){let g=leakGrow(d);if(S.repairDay&&d>S.repairDay)g=leakGrow(S.repairDay)*Math.exp(-(d-S.repairDay)/1.4);
+  const L=LEAK();return g*Math.exp(-Math.hypot(t.x-L.x,t.y-L.y)/55);}
+function noise(t,d){let s=t.id.charCodeAt(2)*31+t.id.charCodeAt(3)*7+d*131;s=(s*16807)%2147483647;return((s%1000)/1000-0.5)*0.008;}
+function F(t,d){if(t.installDay&&d<t.installDay)return null;return freq(Math.min(0.42,t.base+rainAt(d)*0.95+leakAt(t,d)+noise(t,d)));}
+const median=a=>{const s=[...a].sort((x,y)=>x-y);return s[Math.floor(s.length/2)];};
+function neigh(t){return S.tags.filter(o=>o!==t&&o.main===t.main).sort((a,b)=>Math.hypot(a.x-t.x,a.y-t.y)-Math.hypot(b.x-t.x,b.y-t.y)).slice(0,3);}
+function nMed(t,d){const v=neigh(t).map(o=>F(o,d)).filter(v=>v!==null);return v.length?median(v):100;}
+function rawStatus(t,d){const f=F(t,d);if(f===null)return'none';const dev=nMed(t,d)-f;const p=d>1&&F(t,d-1)!==null?nMed(t,d-1)-F(t,d-1):0;
+  if(dev>=4&&p>=4)return'leak';if(100-f>=3)return'rain';return'ok';}
+function status(t,d){const a=S.alerts[t.id];const r=rawStatus(t,d);
+  if(a&&['dispatched','onsite','confirmed'].includes(a.state))return'work';if(a&&a.state==='repaired'&&r==='leak')return'rain';return r;}
+function detectAlerts(){for(const t of S.tags){if(!S.alerts[t.id]&&rawStatus(t,S.day)==='leak'){S.alerts[t.id]={state:'new',since:S.day,score:(nMed(t,S.day)-F(t,S.day))/4};addLog(`Leak suspected at ${t.id} (Main ${t.main}). Alert raised.`);return true;}}return false;}
+const clock=()=>{const m=9*60+((S.log.length*7)%300);return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');};
+function addLog(msg){S.log.unshift({t:`Day ${S.day} · ${clock()}`,msg});}
+
+/* ---------- map ---------- */
+const map=$('#map');
+const cols=[60,250,430,620,800,950],rows=[60,210,360,520];
+for(let i=0;i<cols.length-1;i++)for(let j=0;j<rows.length-1;j++)el('rect',{x:cols[i]+14,y:rows[j]+14,width:cols[i+1]-cols[i]-28,height:rows[j+1]-rows[j]-28,rx:6,fill:'#0E2B43'},map);
+for(const x of cols)el('rect',{x:x-9,y:20,width:18,height:580,fill:css('--street')},map);
+for(const y of rows)el('rect',{x:20,y:y-9,width:960,height:18,fill:css('--street')},map);
+el('path',{d:'M20 600 L980 40',stroke:css('--street'),'stroke-width':22,fill:'none'},map);
+const lbl=(x,y,t,p=map)=>{const e=el('text',{x,y,fill:css('--ink-3'),'font-size':13,'font-family':'IBM Plex Mono, monospace','letter-spacing':'.06em'},p);e.textContent=t;return e;};
+lbl(70,46,'MAIN A');lbl(70,196,'MAIN B');lbl(70,346,'MAIN C');
+el('rect',{x:888,y:470,width:70,height:44,rx:6,fill:'#173B58',stroke:css('--pipe')},map);lbl(896,497,'TANK');
+for(const m of mains)el('line',{x1:40,x2:960,y1:m.y,y2:m.y,stroke:css('--pipe'),'stroke-width':5,'stroke-linecap':'round'},map);
+el('line',{x1:806,x2:806,y1:520,y2:66,stroke:css('--pipe'),'stroke-width':5,'stroke-linecap':'round'},map);
+const route=el('polyline',{points:'',fill:'none',stroke:css('--work'),'stroke-width':4,'stroke-dasharray':'8 7',opacity:0},map);
+const crew=el('g',{opacity:0},map);el('circle',{r:13,fill:css('--work')},crew);const ct=el('text',{y:4.5,'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#071C2E','font-family':'IBM Plex Sans, sans-serif'},crew);ct.textContent='C3';
+const valveLayer=el('g',{},map);const vNodes={};
+for(const v of VALVES){const g=el('g',{},valveLayer);vNodes[v.id]=el('rect',{x:v.x-6,y:v.y-6,width:12,height:12,fill:'#0A2236',stroke:css('--pipe'),'stroke-width':2,transform:`rotate(45 ${v.x} ${v.y})`},g);const tl=lbl(v.x-13,v.y-14,v.id,g);tl.setAttribute('font-size',10);}
+const tagLayer=el('g',{},map);
+const COL={ok:css('--ok'),rain:css('--rain'),leak:css('--leak'),work:css('--work'),none:'#3A5468'};
+let nodes={};
+function drawTags(){tagLayer.innerHTML='';nodes={};
+  for(const t of S.tags){const g=el('g',{class:'tag',tabindex:0,role:'button','aria-label':'Tag '+t.id},tagLayer);
+    const pulse=el('circle',{cx:t.x,cy:t.y,r:11,fill:'none',stroke:COL.leak,'stroke-width':2,opacity:0},g);
+    el('rect',{x:t.x-12,y:t.y-8,width:24,height:16,rx:4,fill:'#F3EDE4'},g);
+    const dot=el('circle',{cx:t.x,cy:t.y,r:4.5,fill:COL.ok},g);
+    const ring=el('rect',{x:t.x-15,y:t.y-11,width:30,height:22,rx:6,fill:'none',stroke:'transparent','stroke-width':2},g);
+    lbl(t.x-15,t.y+26,t.id,g).setAttribute('font-size',11);
+    g.addEventListener('click',()=>{S.sel=t.id;render();});
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();S.sel=t.id;render();}});
+    nodes[t.id]={dot,ring,pulse};}}
+const DEPOT={x:150,y:520};
+function setCrew(p){const L=LEAK();const pts=[[DEPOT.x,DEPOT.y],[250,520],[250,366],[L.x,366]];
+  route.setAttribute('points',pts.map(q=>q.join(',')).join(' '));
+  const a=S.alerts[LEAK_ID];const on=a&&['dispatched','onsite','confirmed'].includes(a.state);
+  route.setAttribute('opacity',on?0.9:0);crew.setAttribute('opacity',on?1:0);
+  let pos=pts[0];if(a&&a.state!=='dispatched')pos=[L.x,L.y-26];else if(on){const k=Math.min(1,p);const seg=[[0,1],[1,2],[2,3]];const lens=seg.map(([i,j])=>Math.hypot(pts[j][0]-pts[i][0],pts[j][1]-pts[i][1]));let d=k*lens.reduce((x,y)=>x+y,0);
+    for(let s=0;s<3;s++){if(d<=lens[s]){const[i,j]=seg[s];const r=d/lens[s];pos=[pts[i][0]+(pts[j][0]-pts[i][0])*r,pts[i][1]+(pts[j][1]-pts[i][1])*r];break;}d-=lens[s];}}
+  crew.setAttribute('transform',`translate(${pos[0]},${pos[1]})`);}
+
+/* ---------- chart ---------- */
+const ch=$('#chart');const X0=46,X1=508,Y0=14,Y1=168,FMIN=78,FMAX=102;
+const xs=d=>X0+(X1-X0)*(d-1)/(DAYS-1),ys=f=>Y0+(Y1-Y0)*(FMAX-f)/(FMAX-FMIN);
+function drawChart(t){ch.innerHTML='';const day=S.day;
+  const tx=(x,y,s,a,c)=>{const e=el('text',{x,y,'text-anchor':a,fill:c||css('--ink-3'),'font-size':11,'font-family':'IBM Plex Mono, monospace'},ch);e.textContent=s;};
+  for(const f of[80,85,90,95,100]){el('line',{x1:X0,x2:X1,y1:ys(f),y2:ys(f),stroke:css('--line')},ch);tx(X0-8,ys(f)+4,f,'end');}
+  for(const d of[1,10,20,30])tx(xs(d),Y1+17,'Day '+d,d===1?'start':d===30?'end':'middle');
+  for(const r of RAIN)el('rect',{x:xs(r)-6,y:Y0,width:12,height:Y1-Y0,fill:css('--rain'),opacity:.12},ch);
+  if(S.repairDay)el('rect',{x:xs(S.repairDay)-1,y:Y0,width:2,height:Y1-Y0,fill:css('--work'),opacity:.8},ch);
+  el('rect',{x:xs(day)-.5,y:Y0,width:1,height:Y1-Y0,fill:css('--ink-2'),opacity:.5},ch);
+  const nb=[],me=[];for(let d=1;d<=day;d++){nb.push([xs(d),ys(nMed(t,d))]);const f=F(t,d);if(f!==null)me.push([xs(d),ys(f)]);}
+  el('polyline',{points:nb.map(p=>p.join(',')).join(' '),fill:'none',stroke:css('--ink-3'),'stroke-width':2,'stroke-dasharray':'5 4'},ch);
+  if(me.length){el('polyline',{points:me.map(p=>p.join(',')).join(' '),fill:'none',stroke:css('--water'),'stroke-width':2.5,'stroke-linejoin':'round'},ch);
+    el('circle',{cx:me[me.length-1][0],cy:me[me.length-1][1],r:5,fill:COL[status(t,day)]||COL.ok,stroke:css('--panel'),'stroke-width':2},ch);}
+  tx(X1,Y0+12,'This tag','end',css('--water'));tx(X1-64,Y0+12,'Neighbours (median)','end');}
+
+/* ---------- web render ---------- */
+function renderWeb(){
+  $('#dayLabel').textContent='Day '+S.day;$('#day').value=S.day;
+  $('#sub').textContent=`Istanbul pilot zone · schematic network map · ${S.tags.length} buried tags`;
+  const c={ok:0,rain:0,leak:0,work:0,none:0};
+  for(const t of S.tags){const s=status(t,S.day);c[s]++;const nd=nodes[t.id];nd.dot.setAttribute('fill',COL[s]);
+    nd.ring.setAttribute('stroke',t.id===S.sel?css('--ink'):'transparent');nd.pulse.setAttribute('opacity',s==='leak'?1:0);}
+  const read=S.tags.filter(t=>F(t,S.day)!==null).length;
+  $('#k-read').textContent=`${read} / ${S.tags.length}`;$('#k-read-sub').textContent=S.ph.lastScan?`Day ${S.ph.lastScan} by Crew 3 field app`:'Daily scan';
+  const wetFrac=(c.rain+c.leak)/S.tags.length;
+  $('#k-rain').textContent=c.rain;$('#k-rain-sub').textContent=!c.rain?'Rain or drainage pattern':wetFrac>0.5?'Area-wide: rain, no alert':'Draining or next to an alert';
+  const open=Object.values(S.alerts).filter(a=>a.state!=='repaired'&&a.state!=='noleak').length;
+  $('#k-leak').textContent=open;$('#k-leak-sub').textContent=open?'Crew action needed or in progress':'Local and persistent wetting';
+  const ra=S.alerts[LEAK_ID];
+  if(ra&&ra.state==='repaired'){$('#k-fix').textContent=(ra.repairedDay-LEAK_START)+' days';$('#k-fix-sub').textContent=`Hidden leak started Day ${LEAK_START}, repaired Day ${ra.repairedDay}`;}
+  else{$('#k-fix').textContent='–';$('#k-fix-sub').textContent='No repair logged yet';}
+  const t=S.tags.find(x=>x.id===S.sel)||S.tags[0],f=F(t,S.day),nm=nMed(t,S.day),st=status(t,S.day),a=S.alerts[t.id];
+  $('#t-id').textContent=t.id;$('#t-loc').textContent=`Main ${t.main} · ${t.depth} m depth${t.installDay?` · installed Day ${t.installDay}`:''}`;
+  $('#t-f').textContent=f===null?'–':f.toFixed(1)+' MHz';$('#t-n').textContent=nm.toFixed(1)+' MHz';
+  $('#t-d').textContent=f===null?'–':(f-nm>=0?'+':'−')+Math.abs(f-nm).toFixed(1)+' MHz';
+  const pill=$('#t-pill');pill.className='pill '+(st==='none'?'ok':st);
+  pill.textContent={ok:'Dry',rain:wetFrac>0.5?'Wet, area-wide':'Wet soil',leak:'Leak suspected',work:'Crew on it',none:'Not read yet'}[st];
+  let why={ok:'Resonance stays near the dry baseline and matches neighbouring tags. <b>No action.</b>',
+    rain:wetFrac>0.5?'This tag and its neighbours shifted together, the pattern rain leaves. <b>No alert.</b>':'The soil here is wet but the tag reads close to its neighbours. <b>No separate alert.</b>',
+    leak:`Reads <b>${f!==null?(nm-f).toFixed(1):0} MHz below its neighbours</b> on consecutive scans. Water is reaching the soil at this point only. <b>Send a crew to confirm.</b>`,
+    work:'A crew has this alert. Status updates arrive from the field app.',none:'This tag was installed recently and has no reading yet.'}[st];
+  if(a&&a.state==='repaired')why=`Repair logged on Day ${a.repairedDay}. Readings return to baseline as the soil drains. <b>Alert closed.</b>`;
+  if(a&&a.state==='noleak')why='The crew found no leak. Tag stays under observation.';
+  $('#t-why').innerHTML=why;drawChart(t);
+  const box=$('#alerts');box.innerHTML='';
+  const list=Object.entries(S.alerts);
+  if(!list.length){const p=document.createElement('p');p.className='empty';p.textContent=S.day>=RAIN[0]&&S.day<=RAIN[1]+3?'Rain is wetting the whole zone. Area-wide shifts are filtered out.':'No alerts. All tags read close to their neighbours.';box.appendChild(p);}
+  const META={new:['!','leak','Leak suspected'],dispatched:['→','work','Crew 3 on the way'],onsite:['◎','work','Crew 3 on site'],confirmed:['✓','work','Leak confirmed, repair under way'],repaired:['✓','ok','Repaired'],noleak:['–','ok','No leak found']};
+  for(const[id,al]of list){const tg=S.tags.find(x=>x.id===id);const[ic,cl,lab]=META[al.state];
+    const d=document.createElement('div');d.className='alert';
+    d.innerHTML=`<div class="ic" style="background:color-mix(in srgb,var(--${cl}) 22%,transparent);color:var(--${cl})">${ic}</div><div style="min-width:0"><h4>${esc(id)} · Main ${esc(tg.main)}${al.wo?' · '+esc(al.wo):''}</h4><p>${esc(lab)} · alert since Day ${al.since}</p></div>`;
+    if(al.score){const sc=document.createElement('div');sc.className='score';const pr=al.score>=2?'High':'Medium';
+      sc.innerHTML=`<span class="${pr==='High'?'hi':''}">Priority ${pr}</span><span>Score ${al.score.toFixed(1)}× threshold</span>`+(al.wo?'<span>Owner Crew 3</span>':'')+(id===LEAK_ID&&al.state!=='noleak'?`<span>Isolate ${isoValves(tg).map(v=>v.id).join(', ')}</span>`:'');
+      d.children[1].appendChild(sc);}
+    if(al.state==='new'){const b=document.createElement('button');b.className='primary';b.id='send-'+id;b.textContent='Send crew';b.addEventListener('click',()=>dispatch(id));d.appendChild(b);}
+    else if(al.state==='repaired'){const b=document.createElement('button');b.id='report-'+id;b.textContent=S.reportOpen?'Hide report':'Copy report';b.addEventListener('click',()=>{S.reportOpen=!S.reportOpen;if(S.reportOpen){try{navigator.clipboard.writeText(report(id)).catch(()=>{});}catch(e){}}render();});d.appendChild(b);
+      if(S.reportOpen){const pre=document.createElement('pre');pre.className='report';pre.id='report-text';pre.textContent=report(id);d.appendChild(pre);}}
+    else{const s=document.createElement('span');s.className='pill '+cl;s.textContent=al.state==='noleak'?'Closed':'In progress';d.appendChild(s);}
+    d.querySelector('h4').style.cursor='pointer';d.querySelector('h4').addEventListener('click',()=>{S.sel=id;render();});
+    box.appendChild(d);}
+  const la=S.alerts[LEAK_ID];const iso=la&&la.state!=='noleak'?isoValves(LEAK()).map(v=>v.id):[];
+  for(const v of VALVES){const on=iso.includes(v.id)&&la.state!=='repaired';vNodes[v.id].setAttribute('stroke',on?css('--work'):css('--pipe'));vNodes[v.id].setAttribute('fill',on?css('--work'):'#0A2236');}
+  const wl=$('#wl');const end=la&&la.state==='repaired'?la.repairedDay:S.day;const hid=S.day>=LEAK_START&&la?Math.max(0,end-LEAK_START):0;
+  wl.innerHTML=!la?'<p class="empty">No open leak. Estimates appear when an alert is raised.</p>'
+   :`<div class="row big"><span>Water lost at ${esc(LEAK_ID)}${la.state==='repaired'?'':' so far'}</span><b>${Math.round(hid*DAY_M3)} m³</b></div>`+
+    `<div class="row"><span>Days since leak start${la.state==='repaired'?' to repair':''}</span><b>${hid}</b></div>`+
+    (la.state==='repaired'?`<div class="row"><span>Saved vs. repair ${EARLY_DAYS} days later</span><b>${Math.round(EARLY_DAYS*DAY_M3)} m³</b></div>`:`<div class="row"><span>Each extra day costs</span><b>${DAY_M3.toFixed(1)} m³</b></div>`)+
+    `<small>Assumed leak flow ${FLOW} L/min (${DAY_M3.toFixed(1)} m³ per day). Water saved = leak flow × days the repair is brought forward.</small>`;
+  const lg=$('#log');lg.innerHTML='';if(!S.log.length){const p=document.createElement('p');p.className='empty';p.textContent='Field and control-room actions appear here.';lg.appendChild(p);}
+  for(const e of S.log){const d=document.createElement('div');d.innerHTML=`<span>${esc(e.t)}</span><div>${esc(e.msg)}</div>`;lg.appendChild(d);}
+  setCrew(S.crewP||0);}
+
+function report(id){const a=S.alerts[id],t=S.tags.find(x=>x.id===id),days=a.repairedDay-LEAK_START;
+  return ['LeakMark event report (simulated demo data)',`Tag: ${id}, Main ${t.main}, ${t.depth} m depth`,`Leak started: Day ${LEAK_START}`,
+    `Alert raised: Day ${a.since}, score ${a.score.toFixed(1)}x the 4 MHz threshold`,`Work order: ${a.wo}, Crew 3`,`Isolation valves: ${isoValves(t).map(v=>v.id).join(', ')}`,
+    `Leak confirmed by acoustic check and repaired: Day ${a.repairedDay}`,`Leak start to repair: ${days} days`,
+    `Estimated water lost: ${Math.round(days*DAY_M3)} m3 (assumed ${FLOW} L/min)`,`Estimated water saved vs. repair ${EARLY_DAYS} days later: ${Math.round(EARLY_DAYS*DAY_M3)} m3`].join('\n');}
+/* ---------- actions ---------- */
+function dispatch(id){const a=S.alerts[id];if(!a||a.state!=='new')return;a.state='dispatched';a.wo='WO-'+(++S.woSeq);
+  addLog(`${a.wo} sent to Crew 3 for ${id}.`);S.crewP=0;showBanner('New work order '+a.wo,`${id} · Main ${S.tags.find(t=>t.id===id).main} · Leak suspected`);
+  render();}
+function nextDay(source){if(S.day>=DAYS)return false;S.day++;
+  if(source==='field'){S.ph.lastScan=S.day;addLog(`Crew 3 scanned ${S.tags.filter(t=>F(t,S.day)!==null).length} tags with the field app.`);}
+  const fresh=detectAlerts();render();return fresh;}
+let timer=null;
+function stop(){clearInterval(timer);timer=null;$('#play').textContent='Play';}
+const busy=()=>S.ph.screen==='scanning'||S.travel;
+$('#play').addEventListener('click',()=>{if(timer){stop();return;}if(S.day>=DAYS||busy())return;$('#play').textContent='Pause';
+  timer=setInterval(()=>{if(S.day>=DAYS){stop();return;}if(nextDay('auto'))stop();},800);});
+$('#day').addEventListener('input',e=>{stop();const v=+e.target.value;if(busy()){e.target.value=S.day;return;}if(v>S.day){while(S.day<v){S.day++;detectAlerts();}}else{S.day=v;rewind(v);}render();});
+function rewind(v){S.reportOpen=false;for(const id in S.alerts)if(S.alerts[id].since>v)delete S.alerts[id];if(S.repairDay&&S.repairDay>v){S.repairDay=null;}for(const id in S.alerts){const a=S.alerts[id];if(a.repairedDay&&a.repairedDay>v){a.state='dispatched';delete a.repairedDay;}}if(!myOrder()){S.crewP=0;S.ph.check=null;S.ph.photo=false;if(S.ph.tab==='orders')S.ph.screen='orders';}if(S.ph.lastScan&&S.ph.lastScan>v)S.ph.lastScan=null;}
+$('#reset').addEventListener('click',()=>{stop();for(const id of[...IV])halt(id);$('#banner').classList.remove('show');S=fresh();drawTags();render();});
+const ev=$('#events');for(const[d,t]of[[RAIN[0],'Rain'],[LEAK_START,'Hidden leak starts']]){const s=document.createElement('span');s.style.left=(100*(d-1)/(DAYS-1))+'%';s.textContent='▲ '+t;ev.appendChild(s);}
+
+/* ---------- field app ---------- */
+const H=$('#apph'),B=$('#appb');
+let bannerTimer;
+function showBanner(t,s){$('#bn-t').textContent=t;$('#bn-s').textContent=s;$('#banner').classList.add('show');clearTimeout(bannerTimer);bannerTimer=setTimeout(()=>$('#banner').classList.remove('show'),6000);}
+$('#banner').addEventListener('click',()=>{$('#banner').classList.remove('show');S.ph.tab='orders';S.ph.screen='order';render();});
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{S.ph.tab=b.dataset.tab;S.ph.screen={scan:'home',orders:myOrder()?'order':'orders',install:'install'}[b.dataset.tab];render();}));
+function myOrder(){const a=S.alerts[LEAK_ID];return a&&a.wo&&a.state!=='new'?a:null;}
+const card=html=>{const d=document.createElement('div');d.className='a-card';d.innerHTML=html;return d;};
+const btn=(label,cls,fn,id)=>{const b=document.createElement('button');b.className='a-btn '+(cls||'');b.textContent=label;if(id)b.id=id;b.addEventListener('click',fn);return b;};
+const head=(title,sub,back)=>{H.innerHTML='';const l=document.createElement('div');
+  if(back){const b=document.createElement('button');b.className='back';b.textContent='‹ Back';b.addEventListener('click',back);l.appendChild(b);}
+  const h=document.createElement('h2');h.textContent=title;l.appendChild(h);if(sub){const p=document.createElement('p');p.textContent=sub;l.appendChild(p);}H.appendChild(l);};
+function miniMap(highlight){const L=LEAK();const s=`<svg class="mini" viewBox="120 300 640 140" aria-hidden="true"><rect x="120" y="300" width="640" height="140" fill="#E3EEF2"/>
+  <rect x="241" y="300" width="18" height="140" fill="#C9D9E1"/><rect x="611" y="300" width="18" height="140" fill="#C9D9E1"/><rect x="120" y="357" width="640" height="18" fill="#C9D9E1"/>
+  <line x1="120" x2="760" y1="366" y2="366" stroke="#8FA7B6" stroke-width="5"/>
+  ${highlight?`<polyline points="150,440 250,440 250,366 ${L.x},366" fill="none" stroke="#3949A8" stroke-width="5" stroke-dasharray="10 8"/>`:''}
+  <circle cx="${L.x}" cy="366" r="16" fill="#FF5A3C" opacity=".25"/><rect x="${L.x-12}" y="358" width="24" height="16" rx="4" fill="#fff" stroke="#0B2E4A"/><circle cx="${L.x}" cy="366" r="4.5" fill="#FF5A3C"/>
+  <text x="${L.x+20}" y="352" font-size="16" font-weight="700" fill="#0B2E4A" font-family="IBM Plex Sans, sans-serif">${LEAK_ID}</text></svg>`;return s;}
+function renderPhone(){const P=S.ph;$('#clock').textContent=clock();
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===P.tab?'page':'false'));
+  const mo=myOrder();const badge=$('#badge');badge.hidden=!(mo&&mo.state!=='repaired'&&mo.state!=='noleak');
+  B.innerHTML='';
+  if(P.tab==='scan'){
+    if(P.screen==='scanning'){head('Scanning',`Reader connected · Day ${S.day+1} route`);const pr=Math.round(100*P.scan.i/S.tags.length);
+      B.appendChild(card(`<div class="a-row"><span>LeakMark Reader LR-2</span><span class="chip ok"><span class="dot"></span>Connected</span></div><div class="prog"><i style="width:${pr}%"></i></div><div class="a-row"><span>Tags read</span><b>${P.scan.i} / ${S.tags.length}</b></div>`));
+      const r=card('<h3>Latest readings</h3><div class="readings"></div>');const rd=r.querySelector('.readings');
+      for(const x of P.scan.rows.slice(-8).reverse()){const d=document.createElement('div');d.innerHTML=`<span>${esc(x.id)}</span><span>${x.f} MHz</span>`;rd.appendChild(d);}B.appendChild(r);return;}
+    if(P.screen==='scandone'){head('Scan uploaded',`Day ${S.day} · Main A, B, C and reservoir line`);const sum=P.scan.sum;
+      B.appendChild(card(`<div class="a-row"><span>Tags read</span><b>${sum.read}</b></div><div class="a-row"><span>Dry</span><b>${sum.ok}</b></div><div class="a-row"><span>Wet soil, no alert</span><b>${sum.rain}</b></div><div class="a-row"><span>New leak alerts</span><b>${sum.alerts}</b></div>`));
+      B.appendChild(card(sum.alerts?`<span class="chip leak"><span class="dot"></span>Alert sent to control room</span><p>The control room decides whether to send a crew.</p>`:`<span class="chip ok"><span class="dot"></span>Data sent to control room</span><p>No new alerts on this route.</p>`));
+      B.appendChild(btn('Done','sec',()=>{P.screen='home';render();},'scan-done'));return;}
+    head('Today',`Crew 3 · Day ${S.day} completed`);
+    B.appendChild(card(`<h3>Scan route</h3><p>Drive the reader along Main A, B, C and the reservoir line. Each tag is read as you pass over it.</p><div class="a-row"><span>Tags on route</span><b>${S.tags.length}</b></div><div class="a-row"><span>Last scan</span><b>${P.lastScan?'Day '+P.lastScan:'Day '+S.day}</b></div>`));
+    const sb=btn(S.day>=DAYS?'Scenario finished':`Start scan for Day ${S.day+1}`,'',startScan,'start-scan');sb.disabled=S.day>=DAYS;B.appendChild(sb);
+    if(mo&&mo.state!=='repaired'&&mo.state!=='noleak')B.appendChild(card(`<span class="chip work"><span class="dot"></span>Open work order ${esc(mo.wo)}</span><p>${LEAK_ID} on Main C needs a leak check.</p>`));
+    return;}
+  if(P.tab==='install'){
+    if(P.screen==='installdone'){head('Tag registered',P.newTag.id);B.appendChild(card(`<span class="chip ok"><span class="dot"></span>Dry baseline ${P.newTag.base} MHz</span><p>${esc(P.newTag.id)} is now on Main ${esc(P.newTag.main)} in the control room map. Close the trench as usual.</p>`));
+      B.appendChild(btn('Add another tag','sec',()=>{P.screen='install';render();}));return;}
+    head('Add tag','Use during a planned excavation');
+    const used=S.tags.filter(t=>t.installDay).map(t=>t.main);
+    const c=card(`<h3>New tag</h3><label class="field">Water main<select id="f-main">${['A','B','C'].map(m=>`<option value="${m}" ${P.form.main===m?'selected':''} ${used.includes(m)?'disabled':''}>Main ${m}${used.includes(m)?' (tag added)':''}</option>`).join('')}</select></label>
+      <label class="field">Depth of tag (m)<input id="f-depth" inputmode="decimal" value="${esc(P.form.depth)}"></label><p>Place the tag 30 cm above the pipe, capacitor side down, then hold the reader over it.</p>`);
+    B.appendChild(c);c.querySelector('#f-main').addEventListener('change',e=>P.form.main=e.target.value);c.querySelector('#f-depth').addEventListener('input',e=>P.form.depth=e.target.value);
+    const ib=btn('Read tag and register','',installTag,'install-tag');ib.disabled=used.length>=3;B.appendChild(ib);return;}
+  // orders
+  if(!mo){head('Work orders','Crew 3');B.appendChild(card('<h3>No open work orders</h3><p>New orders from the control room appear here and as a notification.</p>'));return;}
+  const a=mo,tg=LEAK();
+  if(a.state==='dispatched'){head(a.wo,'Leak check · Main C',()=>{P.screen='orders';render();});
+    B.insertAdjacentHTML('beforeend',miniMap(true));
+    B.appendChild(card(`<div class="a-row"><span>Tag</span><b>${LEAK_ID}</b></div><div class="a-row"><span>Shift vs neighbours</span><b>−${(nMed(tg,S.day)-F(tg,S.day)).toFixed(1)} MHz</b></div><div class="a-row"><span>Alert since</span><b>Day ${a.since}</b></div><div class="a-row"><span>Isolation valves</span><b>${isoValves(tg).map(v=>v.id).join(' · ')}</b></div><span class="chip work"><span class="dot"></span>Route ready · 1.4 km</span>`));
+    B.appendChild(btn('Navigate and arrive','',()=>travel(),'arrive'));return;}
+  if(a.state==='onsite'){head('Acoustic check',`${a.wo} · ${LEAK_ID}`);
+    B.appendChild(card(`<p>Listen at the valve and on the surface above ${LEAK_ID} with the acoustic sensor.</p><div class="choice" id="ch"><button id="c-leak" aria-pressed="${P.check==='leak'}">Leak noise heard at ${LEAK_ID}</button><button id="c-none" aria-pressed="${P.check==='none'}">No leak noise</button></div>`));
+    B.querySelector('#c-leak').addEventListener('click',()=>{P.check='leak';render();});B.querySelector('#c-none').addEventListener('click',()=>{P.check='none';render();});
+    const cb=btn('Submit result',P.check==='leak'?'red':'',submitCheck,'submit-check');cb.disabled=!P.check;B.appendChild(cb);return;}
+  if(a.state==='confirmed'){head('Log repair',`${a.wo} · ${LEAK_ID}`);
+    B.appendChild(card(`<span class="chip leak"><span class="dot"></span>Leak confirmed</span><p>Close ${isoValves(tg).map(v=>v.id).join(' and ')} to isolate the section, repair the service connection, then add a photo and close the order.</p><div class="photo ${P.photo?'taken':''}" id="ph">${P.photo?'Repair photo added':'Tap to add photo'}</div>`));
+    B.querySelector('#ph').addEventListener('click',()=>{P.photo=true;render();});
+    const rb=btn('Mark repaired','',markRepaired,'mark-repaired');rb.disabled=!P.photo;B.appendChild(rb);return;}
+  head(a.wo,'Closed');B.appendChild(card(a.state==='repaired'?`<span class="chip ok"><span class="dot"></span>Repaired on Day ${a.repairedDay}</span><p>The control room closes the alert. ${LEAK_ID} will return to green as the soil drains over the next scans.</p>`:'<span class="chip ok"><span class="dot"></span>No leak found</span><p>The tag stays under observation.</p>'));}
+function startScan(){const P=S.ph;if(S.day>=DAYS||busy())return;stop();P.screen='scanning';P.scan={i:0,rows:[]};render();
+  const d=S.day+1;every(iv=>{const t=S.tags[P.scan.i];const f=F(t,d);P.scan.rows.push({id:t.id,f:f===null?'–':f.toFixed(1)});P.scan.i++;
+    if(P.scan.i>=S.tags.length){halt(iv);const before=Object.keys(S.alerts).length;nextDay('field');
+      const c={ok:0,rain:0};for(const x of S.tags){const s=rawStatus(x,S.day);if(s==='ok')c.ok++;else if(s==='rain')c.rain++;}
+      P.scan.sum={read:S.tags.filter(x=>F(x,S.day)!==null).length,ok:c.ok,rain:c.rain,alerts:Object.keys(S.alerts).length-before};P.screen='scandone';}
+    render();},70);}
+function travel(){const a=myOrder();if(!a||a.state!=='dispatched'||S.travel)return;S.travel=true;const ab=$('#arrive');if(ab){ab.disabled=true;ab.textContent='On the way…';}stop();let p=0;every(iv=>{p+=0.05;S.crewP=p;setCrew(p);if(p>=1){halt(iv);S.travel=false;a.state='onsite';addLog(`Crew 3 arrived at ${LEAK_ID}.`);render();}},60);}
+function submitCheck(){const a=myOrder(),P=S.ph;if(P.check==='leak'){a.state='confirmed';addLog(`Crew 3 confirmed a leak at ${LEAK_ID} with acoustic check.`);}
+  else{a.state='noleak';addLog(`Crew 3 found no leak at ${LEAK_ID}.`);}render();}
+function markRepaired(){const a=myOrder();a.state='repaired';a.repairedDay=S.day;S.repairDay=S.day;addLog(`Repair at ${LEAK_ID} logged with photo. ${a.wo} closed.`);render();}
+function installTag(){const P=S.ph,m=P.form.main,spot=NEW_SPOTS[m];const id='T-'+String(S.tags.length+1).padStart(2,'0');
+  const depth=Math.max(0.3,Math.min(2.5,parseFloat(String(P.form.depth).replace(',','.'))||1.2)).toFixed(1);
+  const t={id,main:m,x:spot.x,y:spot.y,depth,base:0.06,installDay:S.day};S.tags.push(t);
+  P.newTag={id,main:m,base:F(t,S.day).toFixed(1)};addLog(`Crew 3 installed ${id} on Main ${m} at ${depth} m.`);drawTags();P.screen='installdone';render();}
+
+function render(){renderWeb();renderPhone();}
+drawTags();render();
+})();
+</script>
+
+</html>

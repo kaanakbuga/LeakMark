@@ -1,0 +1,129 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  :root{--navy:#0B2E4A;--teal:#0E9AA7;--aqua:#7FD3DA;--soil:#7A5A3C;--soil2:#5E4430;--wet:#3E6E86;--ok:#2BB673;--alert:#FF5A3C;--sand:#F3EDE4}
+  body{margin:0;background:transparent;font-family:'Inter',sans-serif}
+  .frame{position:relative;overflow:hidden}
+  #icon{width:1024px;height:1024px}
+  #logo{width:1600px;height:1600px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px}
+  #logo-c{width:1024px;height:1024px;background:#fff;display:flex;align-items:center;justify-content:center}
+  #logo-h{width:2400px;height:720px;display:flex;align-items:center;gap:70px;padding-left:80px;box-sizing:border-box}
+  .word{font-weight:800;letter-spacing:-0.035em;color:var(--navy);line-height:1}
+  .word b{color:var(--teal);font-weight:800}
+  #banner{width:1920px;height:600px;background:linear-gradient(115deg,#082339 0%,#0B2E4A 55%,#0D3B5C 100%)}
+  .btxt{position:absolute;left:96px;top:92px;width:820px;color:#fff}
+  .btxt .word{color:#fff;font-size:120px}
+  .btxt .word b{color:var(--aqua)}
+  .tag{margin-top:34px;font-size:40px;font-weight:600;line-height:1.25;color:#E6F4F6}
+  .chips{margin-top:44px;display:flex;gap:16px}
+  .chip{font-size:24px;font-weight:600;color:var(--navy);background:var(--aqua);padding:12px 22px;border-radius:999px}
+  .chip.o{background:transparent;color:var(--aqua);border:2px solid var(--aqua)}
+</style></head>
+<body>
+
+<!-- ICON: drop above ground, buried tag below, signal arcs -->
+<svg id="iconsvg" width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="mark" viewBox="0 0 512 512">
+      <defs>
+        <clipPath id="dropclip"><path d="M256 40 C 256 40 112 214 112 320 a144 144 0 0 0 288 0 C 400 214 256 40 256 40 Z"/></clipPath>
+        <linearGradient id="wetg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E6E86"/><stop offset="1" stop-color="#244E66"/></linearGradient>
+      </defs>
+      <!-- drop body -->
+      <path d="M256 40 C 256 40 112 214 112 320 a144 144 0 0 0 288 0 C 400 214 256 40 256 40 Z" fill="#0E9AA7"/>
+      <!-- soil (lower part of the drop) -->
+      <g clip-path="url(#dropclip)">
+        <rect x="0" y="318" width="512" height="200" fill="url(#wetg)"/>
+        <!-- ground line -->
+        <rect x="0" y="310" width="512" height="14" fill="#0B2E4A"/>
+        <!-- buried tag with interdigitated fingers -->
+        <rect x="196" y="378" width="120" height="58" rx="10" fill="#F3EDE4"/>
+        <g fill="#0B2E4A">
+          <rect x="208" y="388" width="96" height="7" rx="3"/>
+          <rect x="208" y="419" width="96" height="7" rx="3"/>
+          <rect x="216" y="395" width="8" height="18" rx="3"/><rect x="248" y="395" width="8" height="18" rx="3"/><rect x="280" y="395" width="8" height="18" rx="3"/>
+          <rect x="232" y="401" width="8" height="18" rx="3"/><rect x="264" y="401" width="8" height="18" rx="3"/><rect x="296" y="401" width="8" height="18" rx="3"/>
+        </g>
+      </g>
+      <!-- signal arcs above the ground, coming from the tag -->
+      <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="20">
+        <path d="M214 272 a60 60 0 0 1 84 0"/>
+        <path d="M184 238 a104 104 0 0 1 144 0" opacity=".6"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="icon" class="frame"><svg width="1024" height="1024"><use href="#mark" width="1024" height="1024"/></svg></div>
+
+<div id="logo" class="frame">
+  <svg width="760" height="760"><use href="#mark" width="760" height="760"/></svg>
+  <div class="word" style="font-size:250px">Leak<b>Mark</b></div>
+</div>
+
+<!-- Circle-safe logo: the mark alone, for platforms that crop the logo to a circle -->
+<div id="logo-c" class="frame"><svg width="640" height="640"><use href="#mark" width="640" height="640"/></svg></div>
+
+<div id="logo-h" class="frame">
+  <svg width="560" height="560"><use href="#mark" width="560" height="560"/></svg>
+  <div class="word" style="font-size:300px">Leak<b>Mark</b></div>
+</div>
+
+<div id="banner" class="frame">
+  <div class="btxt">
+    <div class="word">Leak<b>Mark</b></div>
+    <div class="tag">Battery-free tags that make hidden pipe leaks visible.</div>
+    <div class="chips"><span class="chip">Water Quantity</span><span class="chip o">University Track</span></div>
+  </div>
+  <!-- street cross-section illustration -->
+  <svg style="position:absolute;right:0;top:-20px" width="980" height="640" viewBox="0 0 980 640">
+    <defs>
+      <linearGradient id="soilg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6E5236"/><stop offset="1" stop-color="#4E3A28"/></linearGradient>
+      <radialGradient id="leakg" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#3E8FB0" stop-opacity=".95"/><stop offset=".6" stop-color="#3E7E9A" stop-opacity=".6"/><stop offset="1" stop-color="#3E6E86" stop-opacity="0"/></radialGradient>
+    </defs>
+    <linearGradient id="fadeL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0B2E4A" stop-opacity="1"/><stop offset=".22" stop-color="#0B2E4A" stop-opacity="0"/></linearGradient>
+    <!-- soil block -->
+    <rect x="0" y="330" width="980" height="310" fill="url(#soilg)"/>
+    <!-- road surface -->
+    <rect x="0" y="318" width="980" height="16" fill="#2B3A46"/>
+    <g fill="#E8D9A8"><rect x="40" y="324" width="70" height="4" rx="2"/><rect x="190" y="324" width="70" height="4" rx="2"/><rect x="340" y="324" width="70" height="4" rx="2"/><rect x="490" y="324" width="70" height="4" rx="2"/><rect x="640" y="324" width="70" height="4" rx="2"/><rect x="790" y="324" width="70" height="4" rx="2"/></g>
+    <!-- wet plume around the leak -->
+    <ellipse cx="640" cy="470" rx="170" ry="120" fill="url(#leakg)"/>
+    <!-- pipe -->
+    <rect x="0" y="512" width="980" height="44" rx="0" fill="#9FB3C2"/>
+    <rect x="0" y="512" width="980" height="10" fill="#C6D4DE"/>
+    <!-- leak droplets -->
+    <g fill="#7FD3DA"><circle cx="632" cy="500" r="7"/><circle cx="652" cy="486" r="5"/><circle cx="620" cy="478" r="4"/></g>
+    <!-- buried tags along the pipe -->
+    <g>
+      <rect x="146" y="430" width="56" height="28" rx="6" fill="#F3EDE4"/><circle cx="174" cy="444" r="7" fill="#2BB673"/>
+      <rect x="392" y="430" width="56" height="28" rx="6" fill="#F3EDE4"/><circle cx="420" cy="444" r="7" fill="#2BB673"/>
+      <rect x="612" y="430" width="56" height="28" rx="6" fill="#F3EDE4"/><circle cx="640" cy="444" r="7" fill="#FF5A3C"/>
+      <rect x="842" y="430" width="56" height="28" rx="6" fill="#F3EDE4"/><circle cx="870" cy="444" r="7" fill="#2BB673"/>
+    </g>
+    <!-- reader vehicle above the alert tag -->
+    <g transform="translate(560,206)">
+      <rect x="0" y="40" width="170" height="64" rx="14" fill="#F3EDE4"/>
+      <path d="M26 40 L52 6 H120 L146 40 Z" fill="#F3EDE4"/>
+      <path d="M58 14 H86 V38 H40 Z M92 14 H116 L134 38 H92 Z" fill="#9FD6DC"/>
+      <rect x="70" y="104" width="30" height="6" fill="#7FD3DA"/>
+      <circle cx="40" cy="106" r="16" fill="#1B2730"/><circle cx="130" cy="106" r="16" fill="#1B2730"/>
+      <circle cx="40" cy="106" r="6" fill="#8899A6"/><circle cx="130" cy="106" r="6" fill="#8899A6"/>
+    </g>
+    <!-- signal arcs between tag and reader -->
+    <g fill="none" stroke="#FF5A3C" stroke-linecap="round" stroke-width="7">
+      <path d="M612 400 a40 40 0 0 1 56 0" />
+      <path d="M596 372 a62 62 0 0 1 88 0" opacity=".7"/>
+      <path d="M582 344 a82 82 0 0 1 116 0" opacity=".4"/>
+    </g>
+    <!-- map pin alert above vehicle -->
+    <g transform="translate(615,90)">
+      <path d="M30 0 C13 0 0 13 0 30 C0 52 30 84 30 84 C30 84 60 52 60 30 C60 13 47 0 30 0 Z" fill="#FF5A3C"/>
+      <circle cx="30" cy="30" r="12" fill="#fff"/>
+    </g>
+    <rect x="0" y="300" width="980" height="340" fill="url(#fadeL)"/>
+    <text x="690" y="132" font-family="Inter" font-weight="700" font-size="26" fill="#FFD3C9">Leak suspected</text>
+  </svg>
+</div>
+
+</body></html>

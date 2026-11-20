@@ -1,0 +1,37 @@
+Project: *Global - Messages, [info] GRPC server running on port: 59381. 
+
+Project: LeakMark_HFSS_IDC_20261020_172137, [warning] IDC_in_soil: Solutions have been invalidated. (05:24:46 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, [warning] IDC_in_soil: Solutions have been invalidated. (05:28:10 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, [warning] IDC_in_soil: Solutions have been invalidated. (05:31:26 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, [warning] IDC_in_soil: Solutions have been invalidated. (05:34:49 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, [warning] IDC_in_soil: Solutions have been invalidated. (05:38:10 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] Renormalizing the port impedance will not impact the field results if the 'Include Port Post Processing Effects' is disabled in Edit Sources. (05:22:21 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [info] Normal completion of simulation on server: Local Machine. (05:24:46 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] The variable  'Phase' doesn't have an associated sweep and is excluded from the definition of trace. (05:24:46 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [info] Normal completion of simulation on server: Local Machine. (05:28:09 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] The variable  'Phase' doesn't have an associated sweep and is excluded from the definition of trace. (05:28:10 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [info] Normal completion of simulation on server: Local Machine. (05:31:25 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] The variable  'Phase' doesn't have an associated sweep and is excluded from the definition of trace. (05:31:25 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [info] Normal completion of simulation on server: Local Machine. (05:34:48 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] The variable  'Phase' doesn't have an associated sweep and is excluded from the definition of trace. (05:34:49 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [info] Normal completion of simulation on server: Local Machine. (05:38:09 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] The variable  'Phase' doesn't have an associated sweep and is excluded from the definition of trace. (05:38:10 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [info] Normal completion of simulation on server: Local Machine. (05:41:22 PM  Oct 20, 2026)
+
+Project: LeakMark_HFSS_IDC_20261020_172137, Design: IDC_in_soil (Modal Network), [warning] The variable  'Phase' doesn't have an associated sweep and is excluded from the definition of trace. (05:41:23 PM  Oct 20, 2026)

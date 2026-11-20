@@ -1,0 +1,1546 @@
+{
+ "source": "WRI Aqueduct 4.0 country rankings (Aqueduct40_rankings_download_Y2023M07D05), baseline water stress (bws), weighted by total demand (Tot). Kuzma et al. 2023, CC BY 4.0.",
+ "countries": {
+  "BHR": {
+   "name": "Bahrain",
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "CYP": {
+   "name": "Cyprus",
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "KWT": {
+   "name": "Kuwait",
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "LBN": {
+   "name": "Lebanon",
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "OMN": {
+   "name": "Oman",
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "QAT": {
+   "name": "Qatar",
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "ARE": {
+   "name": "United Arab Emirates",
+   "score": 4.999991212,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "SAU": {
+   "name": "Saudi Arabia",
+   "score": 4.980808426,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "ISR": {
+   "name": "Israel",
+   "score": 4.941652066,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "EGY": {
+   "name": "Egypt",
+   "score": 4.851625216,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "LBY": {
+   "name": "Libya",
+   "score": 4.805210731,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "YEM": {
+   "name": "Yemen",
+   "score": 4.693675833,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "BWA": {
+   "name": "Botswana",
+   "score": 4.664307436,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "IRN": {
+   "name": "Iran",
+   "score": 4.653368575,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "JOR": {
+   "name": "Jordan",
+   "score": 4.619580866,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "CHL": {
+   "name": "Chile",
+   "score": 4.471868674,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "SMR": {
+   "name": "San Marino",
+   "score": 4.449199072,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "BEL": {
+   "name": "Belgium",
+   "score": 4.410841962,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "GRC": {
+   "name": "Greece",
+   "score": 4.338904439,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "TUN": {
+   "name": "Tunisia",
+   "score": 4.280358914,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "NAM": {
+   "name": "Namibia",
+   "score": 4.175797611,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "ZAF": {
+   "name": "South Africa",
+   "score": 4.167753556,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "IRQ": {
+   "name": "Iraq",
+   "score": 4.146234505,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "IND": {
+   "name": "India",
+   "score": 4.107794474,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "SYR": {
+   "name": "Syria",
+   "score": 4.013468628,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "MEX": {
+   "name": "Mexico",
+   "score": 3.995019932,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "MAR": {
+   "name": "Morocco",
+   "score": 3.988406127,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "ERI": {
+   "name": "Eritrea",
+   "score": 3.942539986,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "ESP": {
+   "name": "Spain",
+   "score": 3.940242667,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "DZA": {
+   "name": "Algeria",
+   "score": 3.873999102,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "PAK": {
+   "name": "Pakistan",
+   "score": 3.790570063,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "PER": {
+   "name": "Peru",
+   "score": 3.743217047,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "TKM": {
+   "name": "Turkmenistan",
+   "score": 3.73812683,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "UZB": {
+   "name": "Uzbekistan",
+   "score": 3.628291849,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "THA": {
+   "name": "Thailand",
+   "score": 3.623007642,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "AND": {
+   "name": "Andorra",
+   "score": 3.544997224,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "ALB": {
+   "name": "Albania",
+   "score": 3.473828698,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "NER": {
+   "name": "Niger",
+   "score": 3.471298326,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "TUR": {
+   "name": "Turkey",
+   "score": 3.386483429,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "AFG": {
+   "name": "Afghanistan",
+   "score": 3.369185991,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "ITA": {
+   "name": "Italy",
+   "score": 3.344018796,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "KGZ": {
+   "name": "Kyrgyzstan",
+   "score": 3.276846479,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "PRT": {
+   "name": "Portugal",
+   "score": 3.260032396,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "NPL": {
+   "name": "Nepal",
+   "score": 3.18229337,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "DJI": {
+   "name": "Djibouti",
+   "score": 3.175518835,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "MNG": {
+   "name": "Mongolia",
+   "score": 3.128436223,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "MKD": {
+   "name": "Macedonia",
+   "score": 3.009558697,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "ARM": {
+   "name": "Armenia",
+   "score": 2.9915904,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "LSO": {
+   "name": "Lesotho",
+   "score": 2.94993564,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "LUX": {
+   "name": "Luxembourg",
+   "score": 2.931524656,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "AUS": {
+   "name": "Australia",
+   "score": 2.906718433,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "CHN": {
+   "name": "China",
+   "score": 2.800257843,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "MRT": {
+   "name": "Mauritania",
+   "score": 2.727897971,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "GUY": {
+   "name": "Guyana",
+   "score": 2.695733857,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "IDN": {
+   "name": "Indonesia",
+   "score": 2.669162882,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "BGD": {
+   "name": "Bangladesh",
+   "score": 2.660561137,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "USA": {
+   "name": "United States",
+   "score": 2.604411175,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "KAZ": {
+   "name": "Kazakhstan",
+   "score": 2.511560337,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "AZE": {
+   "name": "Azerbaijan",
+   "score": 2.468350889,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "KOR": {
+   "name": "South Korea",
+   "score": 2.381249355,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "LKA": {
+   "name": "Sri Lanka",
+   "score": 2.361447216,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "TJK": {
+   "name": "Tajikistan",
+   "score": 2.335048113,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "PRK": {
+   "name": "North Korea",
+   "score": 2.322401108,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "SEN": {
+   "name": "Senegal",
+   "score": 2.220100987,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "ZWE": {
+   "name": "Zimbabwe",
+   "score": 2.174587686,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "LTU": {
+   "name": "Lithuania",
+   "score": 2.139633569,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "MMR": {
+   "name": "Myanmar",
+   "score": 2.131153639,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "VNM": {
+   "name": "Vietnam",
+   "score": 2.112769594,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "DEU": {
+   "name": "Germany",
+   "score": 2.041904513,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "PHL": {
+   "name": "Philippines",
+   "score": 2.026275245,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "JPN": {
+   "name": "Japan",
+   "score": 1.967749978,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SLV": {
+   "name": "El Salvador",
+   "score": 1.947996154,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "FRA": {
+   "name": "France",
+   "score": 1.916452159,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "TZA": {
+   "name": "Tanzania",
+   "score": 1.90521696,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "KHM": {
+   "name": "Cambodia",
+   "score": 1.87051284,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CZE": {
+   "name": "Czech Republic",
+   "score": 1.835970493,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "ARG": {
+   "name": "Argentina",
+   "score": 1.834917254,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "URY": {
+   "name": "Uruguay",
+   "score": 1.832983309,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "VEN": {
+   "name": "Venezuela",
+   "score": 1.820253759,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "TLS": {
+   "name": "Timor-Leste",
+   "score": 1.772192187,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SOM": {
+   "name": "Somalia",
+   "score": 1.674658334,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SUR": {
+   "name": "Suriname",
+   "score": 1.667553064,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "POL": {
+   "name": "Poland",
+   "score": 1.65863867,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CUB": {
+   "name": "Cuba",
+   "score": 1.650924902,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BFA": {
+   "name": "Burkina Faso",
+   "score": 1.646041049,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SVK": {
+   "name": "Slovakia",
+   "score": 1.615225882,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "DOM": {
+   "name": "Dominican Republic",
+   "score": 1.604479359,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "HTI": {
+   "name": "Haiti",
+   "score": 1.602577632,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "NLD": {
+   "name": "Netherlands",
+   "score": 1.581120297,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SDN": {
+   "name": "Sudan",
+   "score": 1.457958178,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BGR": {
+   "name": "Bulgaria",
+   "score": 1.45732336,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SSD": {
+   "name": "South Sudan",
+   "score": 1.393236802,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "UKR": {
+   "name": "Ukraine",
+   "score": 1.372503853,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "GBR": {
+   "name": "United Kingdom",
+   "score": 1.298003739,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "MDA": {
+   "name": "Moldova",
+   "score": 1.262222811,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "SRB": {
+   "name": "Serbia",
+   "score": 1.235523742,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "CAN": {
+   "name": "Canada",
+   "score": 1.233315456,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "EST": {
+   "name": "Estonia",
+   "score": 1.218060312,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "ROU": {
+   "name": "Romania",
+   "score": 1.188014819,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BLR": {
+   "name": "Belarus",
+   "score": 1.180970816,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "RUS": {
+   "name": "Russia",
+   "score": 1.167592537,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "AGO": {
+   "name": "Angola",
+   "score": 1.130789734,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "BRA": {
+   "name": "Brazil",
+   "score": 1.037909741,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "MYS": {
+   "name": "Malaysia",
+   "score": 1.032631026,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "GTM": {
+   "name": "Guatemala",
+   "score": 1.026662175,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "ETH": {
+   "name": "Ethiopia",
+   "score": 0.961237436,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "DNK": {
+   "name": "Denmark",
+   "score": 0.951421243,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GEO": {
+   "name": "Georgia",
+   "score": 0.928146972,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "MDG": {
+   "name": "Madagascar",
+   "score": 0.898642942,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "TCD": {
+   "name": "Chad",
+   "score": 0.853364564,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "ZMB": {
+   "name": "Zambia",
+   "score": 0.84556736,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "LIE": {
+   "name": "Liechtenstein",
+   "score": 0.813133463,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "FIN": {
+   "name": "Finland",
+   "score": 0.80862528,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "NGA": {
+   "name": "Nigeria",
+   "score": 0.801556379,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "KEN": {
+   "name": "Kenya",
+   "score": 0.788210351,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "SWE": {
+   "name": "Sweden",
+   "score": 0.781293393,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "MWI": {
+   "name": "Malawi",
+   "score": 0.75280282,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "PAN": {
+   "name": "Panama",
+   "score": 0.745018749,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "LAO": {
+   "name": "Laos",
+   "score": 0.741620199,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "MNE": {
+   "name": "Montenegro",
+   "score": 0.715174797,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "MLI": {
+   "name": "Mali",
+   "score": 0.677467506,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "ECU": {
+   "name": "Ecuador",
+   "score": 0.6573219,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "CRI": {
+   "name": "Costa Rica",
+   "score": 0.648226696,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "LVA": {
+   "name": "Latvia",
+   "score": 0.571722006,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "SVN": {
+   "name": "Slovenia",
+   "score": 0.526117478,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "COL": {
+   "name": "Colombia",
+   "score": 0.496141456,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "HUN": {
+   "name": "Hungary",
+   "score": 0.425174735,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "CHE": {
+   "name": "Switzerland",
+   "score": 0.405618449,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BIH": {
+   "name": "Bosnia and Herzegovina",
+   "score": 0.395887518,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "MOZ": {
+   "name": "Mozambique",
+   "score": 0.37050251,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BTN": {
+   "name": "Bhutan",
+   "score": 0.367776177,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "IRL": {
+   "name": "Ireland",
+   "score": 0.363338153,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GIN": {
+   "name": "Guinea",
+   "score": 0.355084919,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "SWZ": {
+   "name": "Swaziland",
+   "score": 0.313848799,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GNB": {
+   "name": "Guinea-Bissau",
+   "score": 0.307489251,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "AUT": {
+   "name": "Austria",
+   "score": 0.26150335,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "NIC": {
+   "name": "Nicaragua",
+   "score": 0.213853504,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "UGA": {
+   "name": "Uganda",
+   "score": 0.198089531,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "NOR": {
+   "name": "Norway",
+   "score": 0.188372239,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "HRV": {
+   "name": "Croatia",
+   "score": 0.167654501,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BOL": {
+   "name": "Bolivia",
+   "score": 0.155531505,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "HND": {
+   "name": "Honduras",
+   "score": 0.112622036,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GHA": {
+   "name": "Ghana",
+   "score": 0.112402618,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BLZ": {
+   "name": "Belize",
+   "score": 0.068201146,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "NZL": {
+   "name": "New Zealand",
+   "score": 0.050880091,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GMB": {
+   "name": "Gambia",
+   "score": 0.024514391,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "COG": {
+   "name": "Republic of Congo",
+   "score": 0.014405137,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "COD": {
+   "name": "Democratic Republic of the Congo",
+   "score": 0.012159601,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "CAF": {
+   "name": "Central African Republic",
+   "score": 0.010127157,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "CMR": {
+   "name": "Cameroon",
+   "score": 0.008131338,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BEN": {
+   "name": "Benin",
+   "score": 0.003432064,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "TGO": {
+   "name": "Togo",
+   "score": 0.003242327,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "PRY": {
+   "name": "Paraguay",
+   "score": 0.000343884,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BDI": {
+   "name": "Burundi",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "BRN": {
+   "name": "Brunei",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "CIV": {
+   "name": "CÃ´te d'Ivoire",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GAB": {
+   "name": "Gabon",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "GNQ": {
+   "name": "Equatorial Guinea",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "ISL": {
+   "name": "Iceland",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "JAM": {
+   "name": "Jamaica",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "LBR": {
+   "name": "Liberia",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "PNG": {
+   "name": "Papua New Guinea",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "RWA": {
+   "name": "Rwanda",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "SLE": {
+   "name": "Sierra Leone",
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "ATG": {
+   "name": "Antigua and Barbuda",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "BHS": {
+   "name": "Bahamas",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "BRB": {
+   "name": "Barbados",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "COM": {
+   "name": "Comoros",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "CPV": {
+   "name": "Cape Verde",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "DMA": {
+   "name": "Dominica",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "FJI": {
+   "name": "Fiji",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "GRD": {
+   "name": "Grenada",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "KNA": {
+   "name": "Saint Kitts and Nevis",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "LCA": {
+   "name": "Saint Lucia",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "MLT": {
+   "name": "Malta",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "MUS": {
+   "name": "Mauritius",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "SGP": {
+   "name": "Singapore",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "SLB": {
+   "name": "Solomon Islands",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "STP": {
+   "name": "SÃ£o TomÃ© and PrÃ­ncipe",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "TON": {
+   "name": "Tonga",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "TTO": {
+   "name": "Trinidad and Tobago",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "VCT": {
+   "name": "Saint Vincent and the Grenadines",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "VUT": {
+   "name": "Vanuatu",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "WSM": {
+   "name": "Samoa",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "FSM": {
+   "name": "Micronesia",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "NRU": {
+   "name": "Nauru",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "PLW": {
+   "name": "Palau",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "SYC": {
+   "name": "Seychelles",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  },
+  "TUV": {
+   "name": "Tuvalu",
+   "score": -9999,
+   "cat": -9999,
+   "label": "NoData"
+  }
+ },
+ "turkey_provinces": {
+  "Kilis": {
+   "score": 5,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Aksaray": {
+   "score": 4.95204919,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Nigde": {
+   "score": 4.909404581,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Manisa": {
+   "score": 4.830485051,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Osmaniye": {
+   "score": 4.814161295,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Konya": {
+   "score": 4.804051886,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Karaman": {
+   "score": 4.750238554,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "K. Maras": {
+   "score": 4.604719836,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Eskisehir": {
+   "score": 4.586932285,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Hatay": {
+   "score": 4.461634381,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Usak": {
+   "score": 4.392965227,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Afyon": {
+   "score": 4.375219846,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Izmir": {
+   "score": 4.347658292,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Adana": {
+   "score": 4.345401049,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Sanliurfa": {
+   "score": 4.213176701,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Kütahya": {
+   "score": 4.212238291,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Aydin": {
+   "score": 4.204909965,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Çanakkale": {
+   "score": 4.167436332,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Isparta": {
+   "score": 4.122715761,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Kayseri": {
+   "score": 4.077414569,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Denizli": {
+   "score": 4.07415777,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Burdur": {
+   "score": 4.008089798,
+   "cat": 4,
+   "label": "Extremely High (>80%)"
+  },
+  "Kirsehir": {
+   "score": 3.97378244,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Nevsehir": {
+   "score": 3.967092556,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Kinkkale": {
+   "score": 3.918710847,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Yozgat": {
+   "score": 3.901469349,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Mardin": {
+   "score": 3.827668313,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Ankara": {
+   "score": 3.773974263,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Van": {
+   "score": 3.613794363,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Agri": {
+   "score": 3.611260748,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Mersin": {
+   "score": 3.566480892,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Istanbul": {
+   "score": 3.545255953,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Bitlis": {
+   "score": 3.513125129,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Balikesir": {
+   "score": 3.448497839,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Hakkari": {
+   "score": 3.420519613,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Yalova": {
+   "score": 3.42037863,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Bursa": {
+   "score": 3.323576452,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Mugla": {
+   "score": 3.292982091,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Iğdır": {
+   "score": 3.291058086,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Antalya": {
+   "score": 3.269960538,
+   "cat": 3,
+   "label": "High (40-80%)"
+  },
+  "Malatya": {
+   "score": 2.948407671,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Batman": {
+   "score": 2.909760933,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Diyarbakir": {
+   "score": 2.772654074,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Amasya": {
+   "score": 2.670526251,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Kocaeli": {
+   "score": 2.635556607,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Tekirdag": {
+   "score": 2.623639207,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Mus": {
+   "score": 2.552883682,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Sivas": {
+   "score": 2.444599341,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Kastamonu": {
+   "score": 2.367255411,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Tokat": {
+   "score": 2.291133408,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Çorum": {
+   "score": 2.189720261,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Kars": {
+   "score": 2.117240031,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Kirklareli": {
+   "score": 2.016535579,
+   "cat": 2,
+   "label": "Medium - High (20-40%)"
+  },
+  "Sinop": {
+   "score": 1.998867072,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Siirt": {
+   "score": 1.935878023,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Gümüshane": {
+   "score": 1.915557665,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Samsun": {
+   "score": 1.890999435,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Edirne": {
+   "score": 1.868400804,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Gaziantep": {
+   "score": 1.776207799,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Ardahan": {
+   "score": 1.686544829,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Bartın": {
+   "score": 1.590418497,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Düzce": {
+   "score": 1.590418497,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Karabük": {
+   "score": 1.590418497,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Zinguldak": {
+   "score": 1.590418497,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Çankiri": {
+   "score": 1.535330375,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Tunceli": {
+   "score": 1.533691641,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Adiyaman": {
+   "score": 1.473567259,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Bilecik": {
+   "score": 1.182669249,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Bolu": {
+   "score": 1.17822709,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Bingöl": {
+   "score": 1.085176339,
+   "cat": 1,
+   "label": "Low - Medium (10-20%)"
+  },
+  "Sakarya": {
+   "score": 0.965249353,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Elazığ": {
+   "score": 0.92972202,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Sirnak": {
+   "score": 0.808320963,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Erzurum": {
+   "score": 0.574737294,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Giresun": {
+   "score": 0.400585093,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Artvin": {
+   "score": 0.037402269,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Erzincan": {
+   "score": 0.001739822,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Bayburt": {
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Ordu": {
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Rize": {
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  },
+  "Trabzon": {
+   "score": 0,
+   "cat": 0,
+   "label": "Low (<10%)"
+  }
+ }
+}
